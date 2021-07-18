@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:split_view/split_view.dart';
 
+import 'add/input_page.dart';
+import 'add/output_page.dart';
+
 class QuizManagerPage extends StatefulWidget {
   QuizManagerPage({Key? key, this.title}) : super(key: key);
 
@@ -25,18 +28,8 @@ class _QuizManagerPageState extends State<QuizManagerPage> {
           isActive: true,
         ),
         children: [
-          Container(
-            child: Center(child: Text("View1")),
-            color: Colors.red,
-          ),
-          Container(
-            child: Center(child: Text("View2")),
-            color: Colors.blue,
-          ),
-          Container(
-            child: Center(child: Text("View3")),
-            color: Colors.green,
-          ),
+          InputPage(),
+          OutputPage(),
         ],
         onWeightChanged: (w) => print("Horizon: $w"),
       ),

@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jaji_admin/screens/main/main_screen.dart';
 import 'package:split_view/split_view.dart';
 
-import 'constants.dart';
+import 'constant/constants.dart';
 import 'excel/excel_ctrl.dart';
 
 void main() {
