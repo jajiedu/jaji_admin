@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:jaji_admin/models/quiz_model.dart';
 
 class QuestionController extends GetxController {
   //Mã của form thêm câu hỏi
-  String formCode = '1';
+  RxString formCode = '1'.obs;
   // Chọn level
   RxString selectedLevel = 'N5'.obs;
   List<String> level = ['N5', 'N4', 'N3', 'N2', 'N1'];
@@ -11,6 +12,7 @@ class QuestionController extends GetxController {
   List<String> type = ['Từ vựng', 'Ngữ pháp', 'Đọc', 'Nghe'];
   //Chọn sub type
   RxString selectedSubType = 'Cách đọc kanji'.obs;
+  Rx<QuizModel> quizModel = QuizModel().obs;
   List<String> subType = [
     'Cách đọc kanji',
     'Cách đọc hiragane',
@@ -93,16 +95,20 @@ class QuestionController extends GetxController {
     update();
   }
 
-  // thay đổi cấp độ
+  // thay đổi thể loại con
   void changeSubType(String newValue) {
     selectedSubType.update((val) {
       selectedSubType.value = newValue;
     });
 
     if (selectedSubType == 'Trả lời nhanh') {
-      formCode = '2';
+      formCode.update((val) {
+        formCode.value = '2';
+      });
     } else {
-      formCode = '1';
+      formCode.update((val) {
+        formCode.value = '1';
+      });
     }
     update();
   }

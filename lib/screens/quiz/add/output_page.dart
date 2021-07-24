@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ruby_text/ruby_text/ruby_text.dart';
 
 class OutputPage extends StatelessWidget {
   OutputPage({

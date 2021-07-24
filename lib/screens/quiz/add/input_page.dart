@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'questions/controller/question_controller.dart';
-import 'questions/widgets_questions/set_form.dart';
+import 'questions/widgets_questions/router_form_input.dart';
 
 class InputPage extends StatelessWidget {
   InputPage({
@@ -103,9 +102,6 @@ class InputPage extends StatelessWidget {
                           ),
                           onChanged: (String? newValue) {
                             questionCtr.changeSubType(newValue!);
-                            // setState(() {
-                            //   questionCtr.selectedSubType = newValue;
-                            // });
                           },
                           items: questionCtr.subType
                               .map<DropdownMenuItem<String>>((String value) {
@@ -121,7 +117,8 @@ class InputPage extends StatelessWidget {
                 )
               ],
             ),
-            FormAddQuestion(),
+            // thiết định page nhập câu hỏi tùy vào loai câu hỏi muốn nhập
+            Obx(() => RouterFormInput(questionCtr.formCode.value)),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
