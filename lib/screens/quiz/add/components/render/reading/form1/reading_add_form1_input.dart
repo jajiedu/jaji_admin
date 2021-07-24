@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 
 // form ứng với thể loại đọc hiểu tổng hợp
-class ReadingAddForm1 extends StatefulWidget {
+class ReadingAddForm1Input extends StatefulWidget {
   @override
-  _ReadingAddForm1State createState() => _ReadingAddForm1State();
+  _ReadingAddForm1InputState createState() => _ReadingAddForm1InputState();
 }
 
-class _ReadingAddForm1State extends State<ReadingAddForm1> {
+class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
   final AddCtrl questionCtr = Get.find();
 
   @override

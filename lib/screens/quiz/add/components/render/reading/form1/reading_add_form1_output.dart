@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../add_ctrl.dart';
+import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 
-class AddForm2 extends StatefulWidget {
+// form ứng với thể loại đọc hiểu tổng hợp
+class ReadingAddForm1Output extends StatefulWidget {
   @override
-  _AddForm2State createState() => _AddForm2State();
+  _ReadingAddForm1OutputState createState() => _ReadingAddForm1OutputState();
 }
 
-class _AddForm2State extends State<AddForm2> {
+class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
   final AddCtrl questionCtr = Get.find();
 
   @override
@@ -15,7 +16,7 @@ class _AddForm2State extends State<AddForm2> {
     return Container(
       child: Column(
         children: [
-          // Nhập nội dung của câu hỏi
+          //Đề bài(normal)
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -27,8 +28,25 @@ class _AddForm2State extends State<AddForm2> {
                 cursorColor: Colors.deepPurpleAccent,
                 minLines: 3,
                 keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: InputDecoration(labelText: 'Nhập nội dung câu hỏi'),
+                maxLines: 5,
+                decoration: InputDecoration(labelText: 'Đề bài(normal)'),
+              )
+            ],
+          ),
+          //Đề bài(furigana)
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              TextFormField(
+                onChanged: (text) {
+                  questionCtr.content = text;
+                },
+                cursorColor: Colors.deepPurpleAccent,
+                minLines: 3,
+                keyboardType: TextInputType.multiline,
+                maxLines: 5,
+                decoration: InputDecoration(labelText: 'Đề bài(furigana)'),
               )
             ],
           ),
@@ -166,6 +184,25 @@ class _AddForm2State extends State<AddForm2> {
                 maxLines: null,
                 decoration:
                     InputDecoration(labelText: 'Nhập nội dung phần giải thích'),
+              )
+            ],
+          ),
+
+          // Nhập nội dung cần gạch chân
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              TextFormField(
+                onChanged: (text) {
+                  questionCtr.addUnderline(text);
+                },
+                cursorColor: Colors.deepPurpleAccent,
+                minLines: 2,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration:
+                    InputDecoration(labelText: 'Nhập nội dung cần gạch chân'),
               )
             ],
           ),

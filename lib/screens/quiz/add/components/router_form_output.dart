@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'add_form1.dart';
 import 'add_form2.dart';
-import 'render/reading/form1/reading_add_form1_input.dart';
+import 'render/reading/form1/reading_add_form1_output.dart';
 
-// class RouterFormInput extends StatefulWidget {
-//   RouterFormInput(this.formCode);
+// class RouterFormOutput extends StatefulWidget {
+//   RouterFormOutput(this.formCode);
 //   late String formCode;
 //   @override
-//   _RouterFormInputState createState() => _RouterFormInputState();
+//   _RouterFormOutputState createState() => _RouterFormOutputState();
 // }
 
-class RouterFormInput extends StatelessWidget {
+class RouterFormOutput extends StatelessWidget {
   // final QuestionController questionCtr = Get.find();
-  RouterFormInput(this.formCode);
+  RouterFormOutput(this.formCode);
   String formCode;
 
   @override
   Widget build(BuildContext context) {
     switch (formCode) {
       case '1':
-        return ReadingAddForm1Input(); // đọc hiểu tổng hợp
+        return ReadingAddForm1Output(); // đọc hiểu tổng hợp
 
       case '2':
         return AddForm2();
