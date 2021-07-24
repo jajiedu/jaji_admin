@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 
+import 'reading_add_form1_ctrl.dart';
+
 // form ứng với thể loại đọc hiểu tổng hợp
 class ReadingAddForm1Input extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class ReadingAddForm1Input extends StatefulWidget {
 
 class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
   final AddCtrl questionCtr = Get.find();
+  ReadingAddForm1Ctrl readingAddForm1Ctrl = Get.put(ReadingAddForm1Ctrl());
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,7 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
               TextFormField(
                 onChanged: (text) {
                   questionCtr.content = text;
+                  readingAddForm1Ctrl.updateQuestionNormal(text);
                 },
                 cursorColor: Colors.deepPurpleAccent,
                 minLines: 3,
@@ -41,6 +45,7 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
               TextFormField(
                 onChanged: (text) {
                   questionCtr.content = text;
+                  readingAddForm1Ctrl.updateQuestionFurigana(text);
                 },
                 cursorColor: Colors.deepPurpleAccent,
                 minLines: 3,

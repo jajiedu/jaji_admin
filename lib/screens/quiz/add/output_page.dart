@@ -8,8 +8,6 @@ import 'components/router_form_output.dart';
 class OutputPage extends StatelessWidget {
   OutputPage({
     Key? key,
-    // it means we have to pass this
-    //@required this.question,
   }) : super(key: key);
   final AddCtrl addCtr = Get.put(AddCtrl());
   Widget makeWidget(context) {

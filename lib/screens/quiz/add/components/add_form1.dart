@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'controller/question_controller.dart';
+import '../add_ctrl.dart';
 
 // form ứng với mỗi loại câu hỏi khác nhau
 class AddForm1 extends StatefulWidget {
@@ -9,7 +9,7 @@ class AddForm1 extends StatefulWidget {
 }
 
 class _AddForm1State extends State<AddForm1> {
-  final QuestionController questionCtr = Get.find();
+  final AddCtrl questionCtr = Get.find();
 
   @override
   Widget build(BuildContext context) {

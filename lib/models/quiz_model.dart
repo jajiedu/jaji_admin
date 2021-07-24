@@ -19,10 +19,17 @@ class QuizModel {
         );
 
   String? id = ''; // id của bài tập
-  List<String>? questionNormal; // Đề bài(normal)
-  List<List<QsRubyTextModel>>? questionFurigana; // Đề bài(furigana)
-  List<String>? questionTranslate; // Đề bài(translate)
-  List<QsModel>? listSubQuestion; //danh sách câu hỏi
+  /// Đề bài(normal)
+  List<String>? questionNormal = <String>[];
+
+  /// Đề bài(furigana)
+  List<List<QsRubyTextModel>>? questionFurigana;
+
+  /// Đề bài(translate)
+  List<String>? questionTranslate;
+
+  ///danh sách câu hỏi
+  List<QsModel>? listSubQuestion;
 
   Map<String, Object?> toJson() {
     return {
