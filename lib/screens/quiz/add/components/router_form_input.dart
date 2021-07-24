@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jaji_admin/screens/quiz/add/questions/controller/question_controller.dart';
-
 import 'add_form1.dart';
 import 'add_form2.dart';
-import 'reading/form1/reading_add_form1.dart';
+import 'render/reading/form1/reading_add_form1.dart';
 
 // class RouterFormInput extends StatefulWidget {
 //   RouterFormInput(this.formCode);

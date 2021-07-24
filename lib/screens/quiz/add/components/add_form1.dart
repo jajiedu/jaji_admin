@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jaji_admin/screens/quiz/add/questions/controller/question_controller.dart';
+import 'controller/question_controller.dart';
 
 // form ứng với mỗi loại câu hỏi khác nhau
 class AddForm1 extends StatefulWidget {

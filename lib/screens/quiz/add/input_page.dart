@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'questions/controller/question_controller.dart';
-import 'questions/widgets_questions/router_form_input.dart';
+
+import 'add_ctrl.dart';
+import 'components/router_form_input.dart';
 
 class InputPage extends StatelessWidget {
   InputPage({
     Key? key,
   }) : super(key: key);
-  final QuestionController questionCtr = Get.put(QuestionController());
+  final AddCtrl questionCtr = Get.put(AddCtrl());
   Widget makeWidget(context) {
     return SingleChildScrollView(
         child: Container(

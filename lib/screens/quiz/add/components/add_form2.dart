@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jaji_admin/screens/quiz/add/questions/controller/question_controller.dart';
+import 'controller/question_controller.dart';
 
 class AddForm2 extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jaji_admin/screens/quiz/add/questions/controller/question_controller.dart';
+import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 
 // form ứng với thể loại đọc hiểu tổng hợp
 class ReadingAddForm1 extends StatefulWidget {
@@ -9,7 +9,7 @@ class ReadingAddForm1 extends StatefulWidget {
 }
 
 class _ReadingAddForm1State extends State<ReadingAddForm1> {
-  final QuestionController questionCtr = Get.find();
+  final AddCtrl questionCtr = Get.find();
 
   @override
   Widget build(BuildContext context) {
