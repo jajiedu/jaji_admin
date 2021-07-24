@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jaji_admin/models/as_model.dart';
+import 'package:jaji_admin/models/qs_model.dart';
 import 'package:jaji_admin/models/qs_ruby_text_model.dart';
 import 'package:jaji_admin/models/quiz_model.dart';
 import 'package:ruby_text/ruby_text/ruby_text.dart';
 import '/../utils/string_extension.dart';
 
 //Thể loại đọc hiểu ass
-class ReadingAddForm1Ctrl extends GetxController {
+class ReadingAddForm1Ctrl extends GetxController
+    with SingleGetTickerProviderMixin {
   // Lưu câu hỏi
   Rx<QuizModel> quizModel = new QuizModel().obs;
+  late TabController tabQuestionController;
+  RxString code = ''.obs;
+  RxInt radioValueQs1 = 0.obs;
 
   @override
   void onInit() {
     quizModel.value.questionNormal = <String>[];
     quizModel.value.questionFurigana = <List<QsRubyTextModel>>[];
+    quizModel.value.questionTranslate = <String>[];
+    quizModel.value.listSubQuestion = <QsModel>[];
+    for (var i = 0; i < 3; i++) {
+      quizModel.value.listSubQuestion!.add(QsModel());
+      quizModel.value.listSubQuestion![i].listSubQuestion = <AsModel>[];
+      for (var j = 0; j < 4; j++) {
+        quizModel.value.listSubQuestion![i].listSubQuestion!.add(AsModel());
+        quizModel.value.listSubQuestion![i].listSubQuestion![j].answerFurigana =
+            <List<QsRubyTextModel>>[];
+      }
+    }
+    tabQuestionController = TabController(length: 3, vsync: this);
     super.onInit();
   }
 
-  ///up date Đề bài(normal)
+  ///update Đề bài(normal)
   void updateQuestionNormal(String text) {
     quizModel.value.questionNormal = <String>[];
     List<String> p = text.split('\\n');
@@ -28,7 +46,7 @@ class ReadingAddForm1Ctrl extends GetxController {
     }
   }
 
-  ///up date Đề bài(furigana)
+  ///update Đề bài(furigana)
   void updateQuestionFurigana(String text) {
     quizModel.value.questionFurigana = <List<QsRubyTextModel>>[];
     List<String> p = text.split('\\n');
@@ -39,12 +57,66 @@ class ReadingAddForm1Ctrl extends GetxController {
     }
   }
 
+  ///update Đề bài(translate)
+  void updateQuestionTranslate(String text) {
+    quizModel.value.questionTranslate = <String>[];
+    List<String> p = text.split('\\n');
+    for (var i = 0; i < p.length; i++) {
+      quizModel.update((val) {
+        quizModel.value.questionTranslate!.add((p[i]));
+      });
+    }
+  }
+
+  ///Câu hỏi (normal)
+  void updatesubQuestionNormal(String text, int indexQ, int indexA) {
+    List<String> p = text.split('\\n');
+    quizModel.update((val) {
+      quizModel.value.listSubQuestion![indexQ].subQuestionNormal = p;
+    });
+  }
+
+  ///câu hỏi (furigana)
+  void updatesubQuestionFurigana(String text, int indexQ, int indexA) {
+    List<String> p = text.split('\\n');
+    quizModel.value.listSubQuestion![indexQ].subQuestionFurigana =
+        <List<QsRubyTextModel>>[];
+    quizModel.update((val) {
+      for (var i = 0; i < p.length; i++) {
+        quizModel.value.listSubQuestion![indexQ].subQuestionFurigana!
+            .add(convertTextToRuby(p[i]));
+      }
+    });
+  }
+
+  ///Đáp án (normal)
+  void updateAnswerNormal(String text, int indexQ, int indexA) {
+    List<String> p = text.split('\\n');
+    quizModel.update((val) {
+      quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+          .answerNormal = p;
+    });
+  }
+
+  ///câu hỏi (furigana)
+  void updateAnswerFurigana(String text, int indexQ, int indexA) {
+    List<String> p = text.split('\\n');
+    quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+        .answerFurigana = <List<QsRubyTextModel>>[];
+    quizModel.update((val) {
+      for (var i = 0; i < p.length; i++) {
+        quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+            .answerFurigana!
+            .add(convertTextToRuby(p[i]));
+      }
+    });
+  }
+
   /// create ruby data  text
   List<RubyTextData>? createRubyData(List<QsRubyTextModel> listInput) {
     List<RubyTextData> outPut = [];
     listInput.forEach((element) {
       RubyTextData? data = RubyTextData('');
-
       data.text = element.text;
       data.ruby = element.rubyText;
       outPut.add(data);
@@ -55,12 +127,15 @@ class ReadingAddForm1Ctrl extends GetxController {
   Widget getTextWidgets(
       List<String>? texts, List<List<QsRubyTextModel>>? questionFurigana) {
     List<Widget> list = <Widget>[];
-    for (var i = 0; i < texts!.length; i++) {
+    for (var i = 0; i < questionFurigana!.length; i++) {
       List<RubyTextData>? outPut = [];
-      outPut = createRubyData(questionFurigana![i]);
-      list.add(new RubyText(texts[i], outPut));
+      outPut = createRubyData(questionFurigana[i]);
+      list.add(RubyText(texts![i], outPut));
     }
-    return new Column(children: list);
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: list);
   }
 
   /// chuyển đổi sang sạng ruby text
@@ -123,5 +198,17 @@ class ReadingAddForm1Ctrl extends GetxController {
       }
     }
     return rubyText;
+  }
+
+  void updateCode(String c) {
+    code.update((val) {
+      code.value = c;
+    });
+  }
+
+  void updateValueRadio1(dynamic v) {
+    radioValueQs1.update((val) {
+      radioValueQs1.value = v;
+    });
   }
 }

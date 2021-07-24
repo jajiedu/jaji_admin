@@ -19,20 +19,31 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // //Đề bài(normal)
-          // Column(
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   mainAxisSize: MainAxisSize.max,
-          //   children: [],
-          // ),
-          // Đề bài(furigana)
-          GetBuilder<ReadingAddForm1Ctrl>(
-              // specify type as Controller
-              init: ReadingAddForm1Ctrl(), // intialize with the Controller
-              builder: (value) => value.getTextWidgets(
-                  value.quizModel.value.questionNormal,
-                  value.quizModel.value.questionFurigana)),
+          // Đề bài
+          Obx(() => readingAddForm1Ctrl.getTextWidgets(
+              readingAddForm1Ctrl.quizModel.value.questionNormal,
+              readingAddForm1Ctrl.quizModel.value.questionFurigana)),
+          // câu hỏi 1
+          Obx(() => readingAddForm1Ctrl.getTextWidgets(
+              readingAddForm1Ctrl
+                  .quizModel.value.listSubQuestion![0].subQuestionNormal,
+              readingAddForm1Ctrl
+                  .quizModel.value.listSubQuestion![0].subQuestionFurigana)),
+          // Đáp án 1
+          Obx(() => readingAddForm1Ctrl.getTextWidgets(
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![0].answerNormal,
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![0].answerFurigana)),
+          // GetBuilder<ReadingAddForm1Ctrl>(
+          //     // specify type as Controller
+          //     init: ReadingAddForm1Ctrl(), // intialize with the Controller
+          //     builder: (value) => value.getTextWidgets(
+          //         value.quizModel.value.questionNormal,
+          //         value.quizModel.value.questionFurigana)),
           // Column(
           //   mainAxisAlignment: MainAxisAlignment.start,
           //   mainAxisSize: MainAxisSize.max,

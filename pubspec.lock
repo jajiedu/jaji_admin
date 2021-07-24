@@ -280,7 +280,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: de8e756dcfd74843344c56283a7d652aa6a6f72c
+      resolved-ref: "1dec379c5d871437612e6f4a899e7005d6df670f"
       url: "git://github.com/tiennv597/ruby_text.git"
     source: git
     version: "1.0.0+1"
