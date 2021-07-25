@@ -11,5 +11,5 @@ class QsModel {
   List<String>? subQuestionNormal; // Câu hỏi (normal)
   List<List<QsRubyTextModel>>? subQuestionFurigana; //Câu hỏi (furigana)
   List<AsModel>? listSubQuestion; // danh sách câu các đáp án
-  String? explain;
+  List<String>? explain;
 }

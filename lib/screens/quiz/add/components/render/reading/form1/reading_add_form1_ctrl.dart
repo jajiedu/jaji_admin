@@ -15,7 +15,7 @@ class ReadingAddForm1Ctrl extends GetxController
   late TabController tabQuestionController;
   RxString code = ''.obs;
   RxInt radioValueQs1 = 0.obs;
-
+  List<TextEditingController> textCtrls = [];
   @override
   void onInit() {
     quizModel.value.questionNormal = <String>[];
@@ -31,7 +31,11 @@ class ReadingAddForm1Ctrl extends GetxController
             <List<QsRubyTextModel>>[];
       }
     }
-    tabQuestionController = TabController(length: 3, vsync: this);
+    //khởi tạo
+    for (var i = 0; i < 30; i++) {
+      textCtrls.add(TextEditingController());
+    }
+
     super.onInit();
   }
 
@@ -114,6 +118,48 @@ class ReadingAddForm1Ctrl extends GetxController
     });
   }
 
+  // update đáp án đúng
+  void updateValueRadio1(dynamic v, int index) {
+    radioValueQs1.update((val) {
+      radioValueQs1.value = v;
+    });
+    for (var i = 0;
+        i < quizModel.value.listSubQuestion![index].listSubQuestion!.length;
+        i++) {
+      quizModel.value.listSubQuestion![index].listSubQuestion![i].isTrue =
+          false;
+    }
+    quizModel.update((val) {
+      quizModel.value.listSubQuestion![index].listSubQuestion![v - 1].isTrue =
+          true;
+    });
+  }
+
+  ///Giải thích
+  void updateExplain(String text, int index) {
+    List<String> p = text.split('\\n');
+    quizModel.update((val) {
+      quizModel.value.listSubQuestion![index].explain = p;
+    });
+  }
+
+  /// lấy đáp án đúng
+  String getAs(List<AsModel> listAs) {
+    AsModel asModel = AsModel();
+    String as = '';
+    if (listAs[0].isTrue == null) {
+      return '';
+    } else {
+      for (var i = 0; i < listAs.length; i++) {
+        if (listAs[i].isTrue!) {
+          asModel = listAs[i];
+          as = (i + 1).toString();
+        }
+      }
+      return 'Đáp án đúng ' + as;
+    }
+  }
+
   /// create ruby data  text
   List<RubyTextData>? createRubyData(List<QsRubyTextModel> listInput) {
     List<RubyTextData> outPut = [];
@@ -126,7 +172,7 @@ class ReadingAddForm1Ctrl extends GetxController
     return outPut;
   }
 
-  Widget getTextWidgets(
+  Widget getTextRubyWidgets(
       List<String>? texts, List<List<QsRubyTextModel>>? questionFurigana) {
     List<Widget> list = <Widget>[];
 
@@ -142,6 +188,26 @@ class ReadingAddForm1Ctrl extends GetxController
         List<RubyTextData>? outPut = [];
         outPut = createRubyData(questionFurigana[i]);
         list.add(RubyText(texts[i], outPut));
+      }
+      return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: list);
+    }
+  }
+
+  Widget getTextStringWidgets(List<String>? texts) {
+    List<Widget> list = <Widget>[];
+
+    if (texts == null) {
+      list.add(Text(''));
+      return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: list);
+    } else {
+      for (var i = 0; i < texts.length; i++) {
+        list.add(Text(texts[i]));
       }
       return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,12 +281,6 @@ class ReadingAddForm1Ctrl extends GetxController
   void updateCode(String c) {
     code.update((val) {
       code.value = c;
-    });
-  }
-
-  void updateValueRadio1(dynamic v) {
-    radioValueQs1.update((val) {
-      radioValueQs1.value = v;
     });
   }
 }

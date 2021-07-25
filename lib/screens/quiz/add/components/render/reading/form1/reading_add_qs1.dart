@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'reading_add_form1_ctrl.dart';
 
 class ReadingAddQs1 extends StatelessWidget {
-  ReadingAddQs1({
-    Key? key,
-    this.code,
-  }) : super(key: key);
+  ReadingAddQs1({Key? key, this.code, this.indexOfPage, this.indexOfTextCtrl})
+      : super(key: key);
   String? code;
+  int? indexOfPage;
+  List<int>? indexOfTextCtrl;
   ReadingAddForm1Ctrl readingAddForm1Ctrl = Get.find();
   Widget makeWidget(context) {
     return Column(
@@ -17,8 +17,10 @@ class ReadingAddQs1 extends StatelessWidget {
         //Câu hỏi 1(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updatesubQuestionNormal(text, 0, 0);
+            readingAddForm1Ctrl.updatesubQuestionNormal(text, indexOfPage!, 0);
+            readingAddForm1Ctrl.textCtrls[0].text = text;
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![0]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -28,8 +30,10 @@ class ReadingAddQs1 extends StatelessWidget {
         //Câu hỏi 1(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updatesubQuestionFurigana(text, 0, 0);
+            readingAddForm1Ctrl.updatesubQuestionFurigana(
+                text, indexOfPage!, 0);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![1]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -39,8 +43,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 1(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, 0, 0);
+            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 0);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![2]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -50,8 +55,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 1(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, 0, 0);
+            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 0);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![3]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -61,8 +67,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 2(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, 0, 1);
+            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 1);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![4]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -72,8 +79,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 2(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, 0, 1);
+            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 1);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![5]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -83,8 +91,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 3(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, 0, 2);
+            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 2);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![6]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -94,8 +103,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 3(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, 0, 2);
+            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 2);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![7]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -105,8 +115,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 4(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, 0, 3);
+            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 3);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![8]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -116,8 +127,9 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 4(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, 0, 3);
+            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 3);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![9]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 3,
           keyboardType: TextInputType.multiline,
@@ -134,7 +146,7 @@ class ReadingAddQs1 extends StatelessWidget {
                       value: 1,
                       groupValue: readingAddForm1Ctrl.radioValueQs1.value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value);
+                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
                       }),
                   Text('Đáp án 1')
                 ],
@@ -146,7 +158,7 @@ class ReadingAddQs1 extends StatelessWidget {
                       value: 2,
                       groupValue: readingAddForm1Ctrl.radioValueQs1.value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value);
+                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
                       }),
                   Text('Đáp án 2')
                 ],
@@ -158,7 +170,7 @@ class ReadingAddQs1 extends StatelessWidget {
                       value: 3,
                       groupValue: readingAddForm1Ctrl.radioValueQs1.value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value);
+                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
                       }),
                   Text('Đáp án 3')
                 ],
@@ -170,7 +182,7 @@ class ReadingAddQs1 extends StatelessWidget {
                       value: 4,
                       groupValue: readingAddForm1Ctrl.radioValueQs1.value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value);
+                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
                       }),
                   Text('Đáp án 4')
                 ],
@@ -182,7 +194,9 @@ class ReadingAddQs1 extends StatelessWidget {
         TextFormField(
           onChanged: (text) {
             // questionCtr.explain = text;
+            readingAddForm1Ctrl.updateExplain(text, indexOfPage!);
           },
+          controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![10]],
           cursorColor: Colors.deepPurpleAccent,
           minLines: 2,
           keyboardType: TextInputType.multiline,
