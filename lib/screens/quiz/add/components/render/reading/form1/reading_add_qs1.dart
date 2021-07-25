@@ -18,7 +18,6 @@ class ReadingAddQs1 extends StatelessWidget {
         TextFormField(
           onChanged: (text) {
             readingAddForm1Ctrl.updatesubQuestionNormal(text, indexOfPage!, 0);
-            readingAddForm1Ctrl.textCtrls[0].text = text;
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![0]],
           cursorColor: Colors.deepPurpleAccent,

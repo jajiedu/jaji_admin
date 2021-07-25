@@ -32,10 +32,9 @@ class ReadingAddForm1Ctrl extends GetxController
       }
     }
     //khởi tạo
-    for (var i = 0; i < 30; i++) {
+    for (var i = 0; i < 33; i++) {
       textCtrls.add(TextEditingController());
     }
-
     super.onInit();
   }
 
