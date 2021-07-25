@@ -143,9 +143,11 @@ class ReadingAddQs1 extends StatelessWidget {
                 children: [
                   Radio(
                       value: 1,
-                      groupValue: readingAddForm1Ctrl.radioValueQs1.value,
+                      groupValue:
+                          readingAddForm1Ctrl.radioValueQs![indexOfPage!].value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
+                        readingAddForm1Ctrl.updateValueRadio(
+                            value, indexOfPage!);
                       }),
                   Text('Đáp án 1')
                 ],
@@ -155,9 +157,11 @@ class ReadingAddQs1 extends StatelessWidget {
                 children: [
                   Radio(
                       value: 2,
-                      groupValue: readingAddForm1Ctrl.radioValueQs1.value,
+                      groupValue:
+                          readingAddForm1Ctrl.radioValueQs![indexOfPage!].value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
+                        readingAddForm1Ctrl.updateValueRadio(
+                            value, indexOfPage!);
                       }),
                   Text('Đáp án 2')
                 ],
@@ -167,9 +171,11 @@ class ReadingAddQs1 extends StatelessWidget {
                 children: [
                   Radio(
                       value: 3,
-                      groupValue: readingAddForm1Ctrl.radioValueQs1.value,
+                      groupValue:
+                          readingAddForm1Ctrl.radioValueQs![indexOfPage!].value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
+                        readingAddForm1Ctrl.updateValueRadio(
+                            value, indexOfPage!);
                       }),
                   Text('Đáp án 3')
                 ],
@@ -179,9 +185,11 @@ class ReadingAddQs1 extends StatelessWidget {
                 children: [
                   Radio(
                       value: 4,
-                      groupValue: readingAddForm1Ctrl.radioValueQs1.value,
+                      groupValue:
+                          readingAddForm1Ctrl.radioValueQs![indexOfPage!].value,
                       onChanged: (dynamic value) {
-                        readingAddForm1Ctrl.updateValueRadio1(value, 0);
+                        readingAddForm1Ctrl.updateValueRadio(
+                            value, indexOfPage!);
                       }),
                   Text('Đáp án 4')
                 ],

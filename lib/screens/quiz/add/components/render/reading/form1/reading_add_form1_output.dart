@@ -63,18 +63,6 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
           ),
           Obx(() =>
               ReadingAddQsOutputRouter(readingAddForm1Ctrl.codeQsAs.value)),
-          // câu hỏi 1
-          // ReadingAddQsWidget(
-          //   indexOfQs: 0,
-          // ),
-          // // câu hỏi 2
-          // ReadingAddQsWidget(
-          //   indexOfQs: 1,
-          // ),
-          // // câu hỏi 3
-          // ReadingAddQsWidget(
-          //   indexOfQs: 2,
-          // ),
         ],
       ),
     );

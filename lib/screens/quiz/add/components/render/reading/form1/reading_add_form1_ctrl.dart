@@ -14,7 +14,7 @@ class ReadingAddForm1Ctrl extends GetxController
   Rx<QuizModel> quizModel = new QuizModel().obs;
   late TabController tabQuestionController;
   RxString code = ''.obs;
-  RxInt radioValueQs1 = 0.obs;
+  List<RxInt>? radioValueQs;
   RxInt codeQsAs = 0.obs;
   List<TextEditingController> textCtrls = [];
   @override
@@ -23,9 +23,11 @@ class ReadingAddForm1Ctrl extends GetxController
     quizModel.value.questionFurigana = <List<QsRubyTextModel>>[];
     quizModel.value.questionTranslate = <String>[];
     quizModel.value.listSubQuestion = <QsModel>[];
+    radioValueQs = <RxInt>[]; //radio
     for (var i = 0; i < 3; i++) {
       quizModel.value.listSubQuestion!.add(QsModel());
       quizModel.value.listSubQuestion![i].listSubQuestion = <AsModel>[];
+      radioValueQs!.add(0.obs); //radio
       for (var j = 0; j < 4; j++) {
         quizModel.value.listSubQuestion![i].listSubQuestion!.add(AsModel());
         quizModel.value.listSubQuestion![i].listSubQuestion![j].answerFurigana =
@@ -36,6 +38,7 @@ class ReadingAddForm1Ctrl extends GetxController
     for (var i = 0; i < 33; i++) {
       textCtrls.add(TextEditingController());
     }
+
     super.onInit();
   }
 
@@ -119,9 +122,9 @@ class ReadingAddForm1Ctrl extends GetxController
   }
 
   // update đáp án đúng
-  void updateValueRadio1(dynamic v, int index) {
-    radioValueQs1.update((val) {
-      radioValueQs1.value = v;
+  void updateValueRadio(dynamic v, int index) {
+    radioValueQs![index].update((val) {
+      radioValueQs![index].value = v;
     });
     for (var i = 0;
         i < quizModel.value.listSubQuestion![index].listSubQuestion!.length;
@@ -145,14 +148,12 @@ class ReadingAddForm1Ctrl extends GetxController
 
   /// lấy đáp án đúng
   String getAs(List<AsModel> listAs) {
-    AsModel asModel = AsModel();
     String as = '';
     if (listAs[0].isTrue == null) {
       return '';
     } else {
       for (var i = 0; i < listAs.length; i++) {
         if (listAs[i].isTrue!) {
-          asModel = listAs[i];
           as = (i + 1).toString();
         }
       }
@@ -167,6 +168,10 @@ class ReadingAddForm1Ctrl extends GetxController
       RubyTextData? data = RubyTextData('');
       data.text = element.text;
       data.ruby = element.rubyText;
+      data.style = TextStyle(decoration: TextDecoration.none);
+      if (element.isUnderlined != null && element.isUnderlined!) {
+        data.style = TextStyle(decoration: TextDecoration.underline);
+      }
       outPut.add(data);
     });
     return outPut;
@@ -198,7 +203,6 @@ class ReadingAddForm1Ctrl extends GetxController
 
   Widget getTextStringWidgets(List<String>? texts) {
     List<Widget> list = <Widget>[];
-
     if (texts == null) {
       list.add(Text(''));
       return Column(

@@ -73,8 +73,19 @@ class ReadingAddQsWidget extends StatelessWidget {
               readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
                   .listSubQuestion![3].answerFurigana)),
         ),
+        // Hiển thị đáp án
         Obx(() => Text(readingAddForm1Ctrl.getAs(readingAddForm1Ctrl
             .quizModel.value.listSubQuestion![indexOfQs!].listSubQuestion!))),
+        // GIải thích
+        Padding(
+          padding: const EdgeInsets.only(left: 40),
+          child: Text('Giải thích: '),
+        ),
+        Padding(
+            padding: const EdgeInsets.only(left: 40),
+            child: Obx(() => readingAddForm1Ctrl.getTextStringWidgets(
+                readingAddForm1Ctrl
+                    .quizModel.value.listSubQuestion![indexOfQs!].explain))),
       ],
     );
   }

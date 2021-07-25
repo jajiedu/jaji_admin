@@ -114,7 +114,7 @@ class InputPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text('Gạch chân: u (u言葉u)'),
+                Text('Gạch chân: u (u言葉(ことば)u)'),
               ],
             ),
 
