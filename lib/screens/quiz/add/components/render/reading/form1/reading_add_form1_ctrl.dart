@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jaji_admin/models/as_model.dart';
-import 'package:jaji_admin/models/qs_model.dart';
+
 import 'package:jaji_admin/models/qs_ruby_text_model.dart';
-import 'package:jaji_admin/models/quiz_model.dart';
+import 'package:jaji_admin/models/quiz1/as_quiz1_model.dart';
+import 'package:jaji_admin/models/quiz1/qs_quiz1_model.dart';
+import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
 import 'package:ruby_text/ruby_text/ruby_text.dart';
 import '/../utils/string_extension.dart';
 
@@ -11,7 +12,7 @@ import '/../utils/string_extension.dart';
 class ReadingAddForm1Ctrl extends GetxController
     with SingleGetTickerProviderMixin {
   // Lưu câu hỏi
-  Rx<QuizModel> quizModel = new QuizModel().obs;
+  Rx<QuizModelQuiz1> quizModel = new QuizModelQuiz1().obs;
   late TabController tabQuestionController;
   RxString code = ''.obs;
   List<RxInt>? radioValueQs;
@@ -20,7 +21,7 @@ class ReadingAddForm1Ctrl extends GetxController
   @override
   void onInit() {
     quizModel.value.questionNormal = <String>[];
-    quizModel.value.questionFurigana = <List<QsRubyTextModel>>[];
+    quizModel.value.questionFurigana = <List<RubyTextData>>[];
     quizModel.value.questionTranslate = <String>[];
     quizModel.value.listSubQuestion = <QsModel>[];
     radioValueQs = <RxInt>[]; //radio
@@ -31,7 +32,7 @@ class ReadingAddForm1Ctrl extends GetxController
       for (var j = 0; j < 4; j++) {
         quizModel.value.listSubQuestion![i].listSubQuestion!.add(AsModel());
         quizModel.value.listSubQuestion![i].listSubQuestion![j].answerFurigana =
-            <List<QsRubyTextModel>>[];
+            <List<RubyTextData>>[];
       }
     }
     //khởi tạo
@@ -55,7 +56,7 @@ class ReadingAddForm1Ctrl extends GetxController
 
   ///update Đề bài(furigana)
   void updateQuestionFurigana(String text) {
-    quizModel.value.questionFurigana = <List<QsRubyTextModel>>[];
+    quizModel.value.questionFurigana = <List<RubyTextData>>[];
     List<String> p = text.split('\\n');
     for (var i = 0; i < p.length; i++) {
       quizModel.update((val) {
@@ -88,7 +89,7 @@ class ReadingAddForm1Ctrl extends GetxController
   void updatesubQuestionFurigana(String text, int indexQ, int indexA) {
     List<String> p = text.split('\\n');
     quizModel.value.listSubQuestion![indexQ].subQuestionFurigana =
-        <List<QsRubyTextModel>>[];
+        <List<RubyTextData>>[];
     quizModel.update((val) {
       for (var i = 0; i < p.length; i++) {
         quizModel.value.listSubQuestion![indexQ].subQuestionFurigana!
@@ -111,7 +112,7 @@ class ReadingAddForm1Ctrl extends GetxController
   void updateAnswerFurigana(String text, int indexQ, int indexA) {
     List<String> p = text.split('\\n');
     quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
-        .answerFurigana = <List<QsRubyTextModel>>[];
+        .answerFurigana = <List<RubyTextData>>[];
     quizModel.update((val) {
       for (var i = 0; i < p.length; i++) {
         quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
@@ -162,23 +163,23 @@ class ReadingAddForm1Ctrl extends GetxController
   }
 
   /// create ruby data  text
-  List<RubyTextData>? createRubyData(List<QsRubyTextModel> listInput) {
-    List<RubyTextData> outPut = [];
-    listInput.forEach((element) {
-      RubyTextData? data = RubyTextData('');
-      data.text = element.text;
-      data.ruby = element.rubyText;
-      data.style = TextStyle(decoration: TextDecoration.none);
-      if (element.isUnderlined != null && element.isUnderlined!) {
-        data.style = TextStyle(decoration: TextDecoration.underline);
-      }
-      outPut.add(data);
-    });
-    return outPut;
-  }
+  // List<RubyTextData>? createRubyData(List<RubyTextData> listInput) {
+  //   List<RubyTextData> outPut = [];
+  //   listInput.forEach((element) {
+  //     RubyTextData? data = RubyTextData('');
+  //     data.text = element.text;
+  //     data.ruby = element.rubyText;
+  //     data.style = TextStyle(decoration: TextDecoration.none);
+  //     if (element.isUnderlined != null && element.isUnderlined!) {
+  //       data.style = TextStyle(decoration: TextDecoration.underline);
+  //     }
+  //     outPut.add(data);
+  //   });
+  //   return outPut;
+  // }
 
   Widget getTextRubyWidgets(
-      List<String>? texts, List<List<QsRubyTextModel>>? questionFurigana) {
+      List<String>? texts, List<List<RubyTextData>>? questionFurigana) {
     List<Widget> list = <Widget>[];
 
     if (texts == null || questionFurigana == null) {
@@ -190,9 +191,9 @@ class ReadingAddForm1Ctrl extends GetxController
           children: list);
     } else {
       for (var i = 0; i < questionFurigana.length; i++) {
-        List<RubyTextData>? outPut = [];
-        outPut = createRubyData(questionFurigana[i]);
-        list.add(RubyText(texts[i], outPut));
+        // List<RubyTextData>? outPut = [];
+        // outPut = createRubyData(questionFurigana[i]);
+        list.add(RubyText(texts[i], questionFurigana[i]));
       }
       return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -221,22 +222,23 @@ class ReadingAddForm1Ctrl extends GetxController
   }
 
   /// chuyển đổi sang sạng ruby text
-  List<QsRubyTextModel> convertTextToRuby(String text) {
+  List<RubyTextData> convertTextToRuby(String text) {
     List<String> listP = text.split('/n');
-    List<QsRubyTextModel> rubyText = <QsRubyTextModel>[];
+    List<RubyTextData> rubyText = <RubyTextData>[];
     for (var p in listP) {
       var isKanji = false;
       var isBracket = false;
       var isUnderlined = false;
       int startIndex = 0;
-      QsRubyTextModel qsRubyTextModel = QsRubyTextModel();
+      RubyTextData qsRubyTextModel = RubyTextData('');
       List<String> characters = p.split('');
       for (int i = 0; i < characters.length; i++) {
         if (characters[i].isKanji()) {
           if (characters[i + 1] == '(') {
             qsRubyTextModel.text = p.substring(startIndex, i + 1);
             if (isUnderlined) {
-              qsRubyTextModel.isUnderlined = true;
+              qsRubyTextModel.style =
+                  TextStyle(decoration: TextDecoration.underline);
             }
             startIndex = i + 1;
             isKanji = true;
@@ -244,18 +246,19 @@ class ReadingAddForm1Ctrl extends GetxController
         } else if (characters[i] == '(' && isKanji) {
           startIndex++;
         } else if (characters[i] == ')' && isKanji) {
-          qsRubyTextModel.rubyText = p.substring(startIndex, i);
+          qsRubyTextModel.ruby = p.substring(startIndex, i);
           if (isUnderlined) {
-            qsRubyTextModel.isUnderlined = true;
+            qsRubyTextModel.style =
+                TextStyle(decoration: TextDecoration.underline);
           }
           startIndex = i + 1;
           isKanji = false;
-          print(qsRubyTextModel.text! +
-              "⇒" +
-              qsRubyTextModel.rubyText! +
-              qsRubyTextModel.isUnderlined.toString());
+          // print(qsRubyTextModel.text! +
+          //     "⇒" +
+          //     qsRubyTextModel.ruby! +
+          //     qsRubyTextModel.style!.decoration.toString());
           rubyText.add(qsRubyTextModel);
-          qsRubyTextModel = QsRubyTextModel();
+          qsRubyTextModel = RubyTextData('');
         } else {
           if (characters[i] == 'u') {
             isUnderlined = !isUnderlined;
@@ -266,14 +269,16 @@ class ReadingAddForm1Ctrl extends GetxController
               qsRubyTextModel.text = characters[i];
               startIndex = i + 1;
               if (isUnderlined) {
-                qsRubyTextModel.isUnderlined = true;
+                qsRubyTextModel.style =
+                    TextStyle(decoration: TextDecoration.underline);
               }
               // print(qsRubyTextModel.text! + "⇒" + qsRubyTextModel.rubyText!);
-              print(qsRubyTextModel.text! +
-                  "⇒" +
-                  qsRubyTextModel.isUnderlined.toString());
+              // print(qsRubyTextModel.text! +
+              //     "⇒" +
+              //     qsRubyTextModel.ruby! +
+              //     qsRubyTextModel.style!.decoration.toString());
               rubyText.add(qsRubyTextModel);
-              qsRubyTextModel = QsRubyTextModel();
+              qsRubyTextModel = RubyTextData('');
             }
           }
         }
