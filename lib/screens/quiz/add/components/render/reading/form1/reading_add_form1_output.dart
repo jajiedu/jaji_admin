@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 import 'reading_add_form1_ctrl.dart';
+import 'reading_add_qs_output_router.dart';
 import 'reading_add_qs_widget.dart';
 
 // form ứng với thể loại đọc hiểu tổng hợp
@@ -32,18 +33,48 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
           Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
               readingAddForm1Ctrl.quizModel.value.questionNormal,
               readingAddForm1Ctrl.quizModel.value.questionFurigana)),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                    onPressed: () {
+                      readingAddForm1Ctrl.updateCodeQsAs(0);
+                    },
+                    child: Text('Câu hỏi 1')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                    onPressed: () {
+                      readingAddForm1Ctrl.updateCodeQsAs(1);
+                    },
+                    child: Text('Câu hỏi 2')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                    onPressed: () {
+                      readingAddForm1Ctrl.updateCodeQsAs(2);
+                    },
+                    child: Text('Câu hỏi 3')),
+              )
+            ],
+          ),
+          Obx(() =>
+              ReadingAddQsOutputRouter(readingAddForm1Ctrl.codeQsAs.value)),
           // câu hỏi 1
-          ReadingAddQsWidget(
-            indexOfQs: 0,
-          ),
-          // câu hỏi 2
-          ReadingAddQsWidget(
-            indexOfQs: 1,
-          ),
-          // câu hỏi 3
-          ReadingAddQsWidget(
-            indexOfQs: 2,
-          ),
+          // ReadingAddQsWidget(
+          //   indexOfQs: 0,
+          // ),
+          // // câu hỏi 2
+          // ReadingAddQsWidget(
+          //   indexOfQs: 1,
+          // ),
+          // // câu hỏi 3
+          // ReadingAddQsWidget(
+          //   indexOfQs: 2,
+          // ),
         ],
       ),
     );

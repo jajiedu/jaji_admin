@@ -15,6 +15,7 @@ class ReadingAddForm1Ctrl extends GetxController
   late TabController tabQuestionController;
   RxString code = ''.obs;
   RxInt radioValueQs1 = 0.obs;
+  RxInt codeQsAs = 0.obs;
   List<TextEditingController> textCtrls = [];
   @override
   void onInit() {
@@ -280,6 +281,12 @@ class ReadingAddForm1Ctrl extends GetxController
   void updateCode(String c) {
     code.update((val) {
       code.value = c;
+    });
+  }
+
+  void updateCodeQsAs(int c) {
+    code.update((val) {
+      codeQsAs.value = c;
     });
   }
 }
