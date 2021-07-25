@@ -74,6 +74,7 @@ class ReadingAddForm1Ctrl extends GetxController
     quizModel.update((val) {
       quizModel.value.listSubQuestion![indexQ].subQuestionNormal = p;
     });
+    update();
   }
 
   ///câu hỏi (furigana)
@@ -87,6 +88,7 @@ class ReadingAddForm1Ctrl extends GetxController
             .add(convertTextToRuby(p[i]));
       }
     });
+    update();
   }
 
   ///Đáp án (normal)
@@ -98,7 +100,7 @@ class ReadingAddForm1Ctrl extends GetxController
     });
   }
 
-  ///câu hỏi (furigana)
+  ///Đáp án (furigana)
   void updateAnswerFurigana(String text, int indexQ, int indexA) {
     List<String> p = text.split('\\n');
     quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
@@ -127,15 +129,25 @@ class ReadingAddForm1Ctrl extends GetxController
   Widget getTextWidgets(
       List<String>? texts, List<List<QsRubyTextModel>>? questionFurigana) {
     List<Widget> list = <Widget>[];
-    for (var i = 0; i < questionFurigana!.length; i++) {
-      List<RubyTextData>? outPut = [];
-      outPut = createRubyData(questionFurigana[i]);
-      list.add(RubyText(texts![i], outPut));
+
+    if (texts == null || questionFurigana == null) {
+      RubyTextData data = RubyTextData('');
+      list.add(RubyText('', [data]));
+      return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: list);
+    } else {
+      for (var i = 0; i < questionFurigana.length; i++) {
+        List<RubyTextData>? outPut = [];
+        outPut = createRubyData(questionFurigana[i]);
+        list.add(RubyText(texts[i], outPut));
+      }
+      return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: list);
     }
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: list);
   }
 
   /// chuyển đổi sang sạng ruby text

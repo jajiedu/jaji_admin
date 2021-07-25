@@ -38,6 +38,24 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
                   .listSubQuestion![0].answerNormal,
               readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
                   .listSubQuestion![0].answerFurigana)),
+          // Đáp án 2
+          Obx(() => readingAddForm1Ctrl.getTextWidgets(
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![1].answerNormal,
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![1].answerFurigana)),
+          // Đáp án 3
+          Obx(() => readingAddForm1Ctrl.getTextWidgets(
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![2].answerNormal,
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![2].answerFurigana)),
+          // Đáp án 4
+          Obx(() => readingAddForm1Ctrl.getTextWidgets(
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![3].answerNormal,
+              readingAddForm1Ctrl.quizModel.value.listSubQuestion![0]
+                  .listSubQuestion![3].answerFurigana)),
           // GetBuilder<ReadingAddForm1Ctrl>(
           //     // specify type as Controller
           //     init: ReadingAddForm1Ctrl(), // intialize with the Controller

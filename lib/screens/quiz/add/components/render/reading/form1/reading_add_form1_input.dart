@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jaji_admin/constant/constants.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
-
 import 'reading_add_form1_ctrl.dart';
 import 'reading_add_qs_router.dart';
 
@@ -103,68 +102,6 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
             ],
           ),
           Obx(() => ReadingAddQsRouter(readingAddForm1Ctrl.code.value)),
-          // TabBarView(
-          //   controller: readingAddForm1Ctrl.tabQuestionController,
-          //   children: [
-          //     Icon(Icons.directions_car),
-          //     Icon(Icons.directions_transit),
-          //     Icon(Icons.directions_bike),
-          //   ],
-          // ),
-
-          // thiết định câu hỏi 1
-          // Column(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   mainAxisSize: MainAxisSize.max,
-          //   children: [
-          //     //Câu hỏi 1(normal)
-          //     TextFormField(
-          //       onChanged: (text) {
-          //         readingAddForm1Ctrl.updatesubQuestionNormal(text, 0, 0);
-          //       },
-          //       cursorColor: Colors.deepPurpleAccent,
-          //       minLines: 3,
-          //       keyboardType: TextInputType.multiline,
-          //       maxLines: 5,
-          //       decoration: InputDecoration(labelText: 'Câu hỏi 1(normal)'),
-          //     ),
-          //     //Câu hỏi 1(furigana)
-          //     TextFormField(
-          //       onChanged: (text) {
-          //         questionCtr.content = text;
-          //         readingAddForm1Ctrl.updatesubQuestionFurigana(text, 0, 0);
-          //       },
-          //       cursorColor: Colors.deepPurpleAccent,
-          //       minLines: 3,
-          //       keyboardType: TextInputType.multiline,
-          //       maxLines: 5,
-          //       decoration: InputDecoration(labelText: 'Câu hỏi 1(furigana)'),
-          //     ),
-          //     //Đáp án 1(normal)
-          //     TextFormField(
-          //       onChanged: (text) {
-          //         readingAddForm1Ctrl.updateAnswerNormal(text, 0, 0);
-          //       },
-          //       cursorColor: Colors.deepPurpleAccent,
-          //       minLines: 3,
-          //       keyboardType: TextInputType.multiline,
-          //       maxLines: 5,
-          //       decoration: InputDecoration(labelText: 'Đáp án 1(normal)'),
-          //     ),
-          //     //Đáp án 1(furigana)
-          //     TextFormField(
-          //       onChanged: (text) {
-          //         questionCtr.content = text;
-          //         readingAddForm1Ctrl.updateAnswerFurigana(text, 0, 0);
-          //       },
-          //       cursorColor: Colors.deepPurpleAccent,
-          //       minLines: 3,
-          //       keyboardType: TextInputType.multiline,
-          //       maxLines: 5,
-          //       decoration: InputDecoration(labelText: 'Đáp án 1(furigana)'),
-          //     )
-          //   ],
-          // ),
         ],
       ),
     );

@@ -120,30 +120,6 @@ class InputPage extends StatelessWidget {
             ),
             // thiết định page nhập câu hỏi tùy vào loai câu hỏi muốn nhập
             Obx(() => RouterFormInput(questionCtr.formCode.value)),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      RaisedButton(
-                        onPressed: () {
-//                          DialogConfirmQuestion();
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (BuildContext context) =>
-                          //        DialogConfirmQuestion());
-                        },
-                        child:
-                            Text("Lưu câu hỏi", style: TextStyle(fontSize: 20)),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
           ]),
     ));
   }
