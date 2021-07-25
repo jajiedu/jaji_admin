@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:jaji_admin/models/quiz_model.dart';
 
 class AddCtrl extends GetxController {
   //Mã của form thêm câu hỏi
@@ -12,7 +11,6 @@ class AddCtrl extends GetxController {
   List<String> type = ['Từ vựng', 'Ngữ pháp', 'Đọc', 'Nghe'];
   //Chọn sub type
   RxString selectedSubType = 'Cách đọc kanji'.obs;
-  Rx<QuizModel> quizModel = QuizModel().obs;
   List<String> subType = [
     'Cách đọc kanji',
     'Cách đọc hiragane',

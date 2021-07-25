@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:jaji_admin/models/qs_ruby_text_model.dart';
 import 'package:jaji_admin/models/quiz1/as_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/qs_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
@@ -35,7 +33,7 @@ class ReadingAddForm1Ctrl extends GetxController
             <List<RubyTextData>>[];
       }
     }
-    //khởi tạo
+    //khởi tạo text controller lưu giá trị của input
     for (var i = 0; i < 33; i++) {
       textCtrls.add(TextEditingController());
     }
@@ -162,22 +160,7 @@ class ReadingAddForm1Ctrl extends GetxController
     }
   }
 
-  /// create ruby data  text
-  // List<RubyTextData>? createRubyData(List<RubyTextData> listInput) {
-  //   List<RubyTextData> outPut = [];
-  //   listInput.forEach((element) {
-  //     RubyTextData? data = RubyTextData('');
-  //     data.text = element.text;
-  //     data.ruby = element.rubyText;
-  //     data.style = TextStyle(decoration: TextDecoration.none);
-  //     if (element.isUnderlined != null && element.isUnderlined!) {
-  //       data.style = TextStyle(decoration: TextDecoration.underline);
-  //     }
-  //     outPut.add(data);
-  //   });
-  //   return outPut;
-  // }
-
+  /// gender view khi có ruby text
   Widget getTextRubyWidgets(
       List<String>? texts, List<List<RubyTextData>>? questionFurigana) {
     List<Widget> list = <Widget>[];
@@ -191,8 +174,6 @@ class ReadingAddForm1Ctrl extends GetxController
           children: list);
     } else {
       for (var i = 0; i < questionFurigana.length; i++) {
-        // List<RubyTextData>? outPut = [];
-        // outPut = createRubyData(questionFurigana[i]);
         list.add(RubyText(texts[i], questionFurigana[i]));
       }
       return Column(
@@ -202,6 +183,7 @@ class ReadingAddForm1Ctrl extends GetxController
     }
   }
 
+  /// gender view khi không có ruby text
   Widget getTextStringWidgets(List<String>? texts) {
     List<Widget> list = <Widget>[];
     if (texts == null) {
@@ -227,57 +209,79 @@ class ReadingAddForm1Ctrl extends GetxController
     List<RubyTextData> rubyText = <RubyTextData>[];
     for (var p in listP) {
       var isKanji = false;
-      var isBracket = false;
+      //var isBracket = false;
       var isUnderlined = false;
       int startIndex = 0;
+      // biến trung gian
       RubyTextData qsRubyTextModel = RubyTextData('');
       List<String> characters = p.split('');
+      // chạy vòng lặp tới khi gặp chữ kanji
       for (int i = 0; i < characters.length; i++) {
+        // khi là chữ kanji thì check xem phía trước có phải dấu ngoặc không
         if (characters[i].isKanji()) {
+          // nếu phía trước là dấu ngoặc
           if (characters[i + 1] == '(') {
+            //lưu lại giá trị của text từ vị trí start tới điểm trước dấu ngoặc
             qsRubyTextModel.text = p.substring(startIndex, i + 1);
+            //nếu thành phần đó đc gạch chân thì thiết định style
             if (isUnderlined) {
               qsRubyTextModel.style =
                   TextStyle(decoration: TextDecoration.underline);
             }
+            //sau khi lưu giá trị thì thiết định lại điểm start
             startIndex = i + 1;
+            // bật cờ kanji
             isKanji = true;
           }
-        } else if (characters[i] == '(' && isKanji) {
+        } //khi là dấu ngoặc thì check xem cờ kanji có đang được bật không
+        // nếu cờ đang được bật thi dấu ngoặc đó là dấu ngoặc ở xử lý trên
+        // khi đó tăng điểm start lên 1 để bỏ qua dấu ngoặc
+        else if (characters[i] == '(' && isKanji) {
           startIndex++;
-        } else if (characters[i] == ')' && isKanji) {
+        } //khi là dấu ngoặc đóng thì check xem cờ kanji có đang được bật không
+        //nếu đang được bật thì đâu là dấu đóng ngoặc của nội dung furigane
+        // khi ấy lưu giá trị furigana từ điểm start tới điểm trước dấu ngoặc
+        // đóng, sau đó tăng điểm start lên 1 để bỏ qua dấu ngoặc
+        else if (characters[i] == ')' && isKanji) {
+          // lưu giá trị từ vị trí start tới trước dấu ngoặc
           qsRubyTextModel.ruby = p.substring(startIndex, i);
+          //nếu thành phần đó đc gạch chân thì thiết định style
           if (isUnderlined) {
             qsRubyTextModel.style =
                 TextStyle(decoration: TextDecoration.underline);
           }
+          // tăng điểm start
           startIndex = i + 1;
+          // tắt cờ kanji
           isKanji = false;
-          // print(qsRubyTextModel.text! +
-          //     "⇒" +
-          //     qsRubyTextModel.ruby! +
-          //     qsRubyTextModel.style!.decoration.toString());
+          //lưu ruby data vào mảng
           rubyText.add(qsRubyTextModel);
+          // khởi tạo lại biến trung gian
           qsRubyTextModel = RubyTextData('');
-        } else {
+        } // khi gặp kí tự 'u' thì bật cờ gạch chân lên
+        // phần này dùng để thiết định style cho chữ
+        else {
           if (characters[i] == 'u') {
+            // bật tắt cờ gạch chân
             isUnderlined = !isUnderlined;
+            // tăng điểm start lên 1 để bỏ qua chữ u
             startIndex++;
           } else {
+            //nếu kí tự không thuộc phạm vi chữ kanji và các kí tự đánh dấu
+            //thì là kí tự không furigane nên sẽ lưu giá trị
             if (isKanji == false) {
-              //print(p.substring(startIndex, i));
+              // lưu kí tự
               qsRubyTextModel.text = characters[i];
+              // tăng điểm start lên 1
               startIndex = i + 1;
+              //nếu thành phần đó đc gạch chân thì thiết định style
               if (isUnderlined) {
                 qsRubyTextModel.style =
                     TextStyle(decoration: TextDecoration.underline);
               }
-              // print(qsRubyTextModel.text! + "⇒" + qsRubyTextModel.rubyText!);
-              // print(qsRubyTextModel.text! +
-              //     "⇒" +
-              //     qsRubyTextModel.ruby! +
-              //     qsRubyTextModel.style!.decoration.toString());
+              // lưu giá trị vào mảng
               rubyText.add(qsRubyTextModel);
+              // khởi tạo lại biến trung gian
               qsRubyTextModel = RubyTextData('');
             }
           }
