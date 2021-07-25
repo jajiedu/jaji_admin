@@ -63,6 +63,11 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
           ),
           Obx(() =>
               ReadingAddQsOutputRouter(readingAddForm1Ctrl.codeQsAs.value)),
+          TextButton(
+              onPressed: () {
+                readingAddForm1Ctrl.saveQsAs();
+              },
+              child: Text('Lưu câu hỏi'))
         ],
       ),
     );

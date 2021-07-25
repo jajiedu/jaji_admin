@@ -18,7 +18,8 @@ class OutputPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8),
             child: Obx(() => RouterFormOutput(addCtr.formCode.value)),
-          )
+          ),
+          TextButton(onPressed: () {}, child: Text('Lưu câu hỏi'))
         ],
       ),
     );

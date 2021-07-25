@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:jaji_admin/models/quiz1/as_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/qs_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
+import 'package:jaji_admin/services/quiz_services.dart';
 import 'package:ruby_text/ruby_text/ruby_text.dart';
 import '/../utils/string_extension.dart';
 
@@ -301,5 +302,9 @@ class ReadingAddForm1Ctrl extends GetxController
     code.update((val) {
       codeQsAs.value = c;
     });
+  }
+
+  void saveQsAs() {
+    QuizServices().addDict(quizModel.value);
   }
 }
