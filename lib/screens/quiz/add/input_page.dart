@@ -19,6 +19,7 @@ class InputPage extends StatelessWidget {
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Row(
@@ -41,9 +42,6 @@ class InputPage extends StatelessWidget {
                           ),
                           onChanged: (String? newValue) {
                             questionCtr.changeLevel(newValue!);
-                            // setState(() {
-                            //   questionCtr.selectedLevel = newValue;
-                            // });
                           },
                           items: questionCtr.level
                               .map<DropdownMenuItem<String>>((String value) {
@@ -115,9 +113,11 @@ class InputPage extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
+                Text('Gạch chân: u (u言葉u)'),
               ],
             ),
+
             // thiết định page nhập câu hỏi tùy vào loai câu hỏi muốn nhập
             Obx(() => RouterFormInput(questionCtr.formCode.value)),
           ]),
