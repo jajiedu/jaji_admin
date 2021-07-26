@@ -16,7 +16,7 @@ class QuizServices {
               QuizModelQuiz1.fromJson(snapshot.data()!),
           toFirestore: (quiz, _) => quiz.toJson(),
         );
-
+    print(quiz.toJson());
     await dictsRef.add(quiz);
   }
 }

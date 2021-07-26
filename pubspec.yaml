@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   excel: any
+  json_annotation: ^4.1.0
   file_picker: ^3.0.3
   flutter_svg: ^0.22.0
   get: ^4.1.4
@@ -44,6 +45,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.0.6
+  json_serializable: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

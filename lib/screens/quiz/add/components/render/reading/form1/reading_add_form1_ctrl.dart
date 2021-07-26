@@ -167,7 +167,7 @@ class ReadingAddForm1Ctrl extends GetxController
     List<Widget> list = <Widget>[];
 
     if (texts == null || questionFurigana == null) {
-      RubyTextData data = RubyTextData('');
+      RubyTextData data = RubyTextData();
       list.add(RubyText('', [data]));
       return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -214,7 +214,7 @@ class ReadingAddForm1Ctrl extends GetxController
       var isUnderlined = false;
       int startIndex = 0;
       // biến trung gian
-      RubyTextData qsRubyTextModel = RubyTextData('');
+      RubyTextData qsRubyTextModel = RubyTextData();
       List<String> characters = p.split('');
       // chạy vòng lặp tới khi gặp chữ kanji
       for (int i = 0; i < characters.length; i++) {
@@ -226,8 +226,7 @@ class ReadingAddForm1Ctrl extends GetxController
             qsRubyTextModel.text = p.substring(startIndex, i + 1);
             //nếu thành phần đó đc gạch chân thì thiết định style
             if (isUnderlined) {
-              qsRubyTextModel.style =
-                  TextStyle(decoration: TextDecoration.underline);
+              qsRubyTextModel.isUnderlined = true;
             }
             //sau khi lưu giá trị thì thiết định lại điểm start
             startIndex = i + 1;
@@ -248,8 +247,7 @@ class ReadingAddForm1Ctrl extends GetxController
           qsRubyTextModel.ruby = p.substring(startIndex, i);
           //nếu thành phần đó đc gạch chân thì thiết định style
           if (isUnderlined) {
-            qsRubyTextModel.style =
-                TextStyle(decoration: TextDecoration.underline);
+            qsRubyTextModel.isUnderlined = true;
           }
           // tăng điểm start
           startIndex = i + 1;
@@ -258,7 +256,7 @@ class ReadingAddForm1Ctrl extends GetxController
           //lưu ruby data vào mảng
           rubyText.add(qsRubyTextModel);
           // khởi tạo lại biến trung gian
-          qsRubyTextModel = RubyTextData('');
+          qsRubyTextModel = RubyTextData();
         } // khi gặp kí tự 'u' thì bật cờ gạch chân lên
         // phần này dùng để thiết định style cho chữ
         else {
@@ -277,13 +275,12 @@ class ReadingAddForm1Ctrl extends GetxController
               startIndex = i + 1;
               //nếu thành phần đó đc gạch chân thì thiết định style
               if (isUnderlined) {
-                qsRubyTextModel.style =
-                    TextStyle(decoration: TextDecoration.underline);
+                qsRubyTextModel.isUnderlined = true;
               }
               // lưu giá trị vào mảng
               rubyText.add(qsRubyTextModel);
               // khởi tạo lại biến trung gian
-              qsRubyTextModel = RubyTextData('');
+              qsRubyTextModel = RubyTextData();
             }
           }
         }

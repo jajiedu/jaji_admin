@@ -344,13 +344,13 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.2"
   ruby_text:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: ca39b2d63ba730f3eb1a23f5a72c8586dbc03253
+      resolved-ref: f0a8f7660181362ffb41962399d8dfc987badfd8
       url: "git://github.com/tiennv597/ruby_text.git"
     source: git
     version: "1.0.0+1"
