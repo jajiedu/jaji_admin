@@ -1,6 +1,9 @@
 import 'package:ruby_text/ruby_text/ruby_text.dart';
 import 'qs_quiz1_model.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'quiz_quiz1_model.g.dart';
 
+@JsonSerializable(explicitToJson: true)
 class QuizModelQuiz1 {
   QuizModelQuiz1({
     this.id,
@@ -9,14 +12,6 @@ class QuizModelQuiz1 {
     this.questionTranslate,
     this.listSubQuestion,
   });
-  QuizModelQuiz1.fromJson(Map<String, Object?> json)
-      : this(
-          questionNormal: json['questionNormal']! as List<String>,
-          questionFurigana:
-              json['questionFurigana']! as List<List<RubyTextData>>,
-          questionTranslate: json['questionTranslate']! as List<String>,
-          listSubQuestion: json['listSubQuestion']! as List<QsModel>,
-        );
 
   String? id = ''; // id của bài tập
   /// Đề bài(normal)
@@ -31,12 +26,8 @@ class QuizModelQuiz1 {
   ///danh sách câu hỏi
   List<QsModel>? listSubQuestion;
 
-  Map<String, Object?> toJson() {
-    return {
-      'questionNormal': questionNormal,
-      'questionFurigana': questionFurigana,
-      'questionTranslate': questionTranslate,
-      'listQs': listSubQuestion,
-    };
-  }
+  factory QuizModelQuiz1.fromJson(Map<String, dynamic> json) =>
+      _$QuizModelQuiz1FromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuizModelQuiz1ToJson(this);
 }

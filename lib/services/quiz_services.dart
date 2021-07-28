@@ -9,14 +9,19 @@ class QuizServices {
   /// thêm câu hỏi phần đọc hiểu tổng hợp
   void addDict(QuizModelQuiz1 quiz) async {
     //truy vấn
-    final dictsRef = FirebaseFirestore.instance
+    // final dictsRef = FirebaseFirestore.instance
+    //     .collection(AppConfig.collection)
+    //     .withConverter<QuizModelQuiz1>(
+    //       fromFirestore: (snapshot, _) =>
+    //           QuizModelQuiz1.fromJson(snapshot.data()!),
+    //       toFirestore: (quiz, _) => quiz.toJson(),
+    //     );
+    // print(quiz.toJson());
+    // await dictsRef.add(quiz);
+    FirebaseFirestore.instance
         .collection(AppConfig.collection)
-        .withConverter<QuizModelQuiz1>(
-          fromFirestore: (snapshot, _) =>
-              QuizModelQuiz1.fromJson(snapshot.data()!),
-          toFirestore: (quiz, _) => quiz.toJson(),
-        );
-    print(quiz.toJson());
-    await dictsRef.add(quiz);
+        .doc('id')
+        .set(quiz.toJson())
+        .then((value) => null);
   }
 }

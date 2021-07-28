@@ -167,7 +167,7 @@ class ReadingAddForm1Ctrl extends GetxController
     List<Widget> list = <Widget>[];
 
     if (texts == null || questionFurigana == null) {
-      RubyTextData data = RubyTextData();
+      RubyTextData data = RubyTextData(text: '');
       list.add(RubyText('', [data]));
       return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
