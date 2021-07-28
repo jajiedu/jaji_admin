@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:jaji_admin/constant/app_constant.dart';
+import 'package:jaji_admin/constant/config.dart';
 import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
 
 ///

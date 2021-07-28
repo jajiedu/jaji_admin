@@ -8,23 +8,25 @@ part of 'qs_quiz1_model.dart';
 
 QsModel _$QsModelFromJson(Map<String, dynamic> json) {
   return QsModel(
-    subQuestionNormal:
-        (json['subQuestionNormal'] as List).map((e) => e as String).toList(),
-    subQuestionFurigana: (json['subQuestionFurigana']
-            as List<List<RubyTextData>>)
-        .map((e) =>
-            (e as List<RubyTextData>).map((e) => e as RubyTextData).toList())
+    subQuestionNormal: (json['subQuestionNormal'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    explain: (json['explain'] as List).map((e) => e as String).toList(),
+    subQuestionFurigana: (json['subQuestionFurigana'] as List<dynamic>?)
+        ?.map((e) => (e as List<dynamic>)
+            .map((e) => RubyTextData.fromJson(e as Map<String, dynamic>))
+            .toList())
+        .toList(),
+    listSubQuestion: (json['listSubQuestion'] as List<dynamic>?)
+        ?.map((e) => AsModel.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    explain:
+        (json['explain'] as List<dynamic>?)?.map((e) => e as String).toList(),
   );
 }
 
 Map<String, dynamic> _$QsModelToJson(QsModel instance) => <String, dynamic>{
       'subQuestionNormal': instance.subQuestionNormal,
-      'subQuestionFurigana': instance.subQuestionFurigana
-          ?.map((e) => e.map((e) => e.toJson()).toList())
-          .toList(),
-      'listSubQuestion':
-          instance.listSubQuestion?.map((e) => e.toJson()).toList(),
+      'subQuestionFurigana': instance.subQuestionFurigana,
+      'listSubQuestion': instance.listSubQuestion,
       'explain': instance.explain,
     };

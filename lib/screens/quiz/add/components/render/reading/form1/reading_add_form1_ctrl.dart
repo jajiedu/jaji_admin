@@ -1,8 +1,12 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jaji_admin/models/quiz1/as_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/qs_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
+import 'package:jaji_admin/network/api_service.dart';
 import 'package:jaji_admin/services/quiz_services.dart';
 import 'package:ruby_text/ruby_text/ruby_text.dart';
 import '/../utils/string_extension.dart';
@@ -17,6 +21,8 @@ class ReadingAddForm1Ctrl extends GetxController
   List<RxInt>? radioValueQs;
   RxInt codeQsAs = 0.obs;
   List<TextEditingController> textCtrls = [];
+  final apiService =
+      ApiService(Dio(BaseOptions(contentType: 'application/json')));
   @override
   void onInit() {
     quizModel.value.questionNormal = <String>[];
@@ -302,6 +308,7 @@ class ReadingAddForm1Ctrl extends GetxController
   }
 
   void saveQsAs() {
-    QuizServices().addDict(quizModel.value);
+    String jsonUser = jsonEncode(quizModel.value);
+    apiService.addQuiz(jsonUser, 'style');
   }
 }

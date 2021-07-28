@@ -8,17 +8,20 @@ part of 'quiz_quiz1_model.dart';
 
 QuizModelQuiz1 _$QuizModelQuiz1FromJson(Map<String, dynamic> json) {
   return QuizModelQuiz1(
-    id: json['id'] as String,
-    questionNormal:
-        (json['questionNormal'] as List).map((e) => e as String).toList(),
-    questionFurigana: (json['questionFurigana'] as List<List<RubyTextData>>)
-        .map((e) =>
-            (e as List<RubyTextData>).map((e) => e as RubyTextData).toList())
+    id: json['id'] as String?,
+    questionNormal: (json['questionNormal'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    questionTranslate:
-        (json['questionTranslate'] as List).map((e) => e as String).toList(),
-    listSubQuestion: (json['listSubQuestion'] as List)
-        .map((e) => QsModel.fromJson(e as Map<String, dynamic>))
+    questionFurigana: (json['questionFurigana'] as List<dynamic>?)
+        ?.map((e) => (e as List<dynamic>)
+            .map((e) => RubyTextData.fromJson(e as Map<String, dynamic>))
+            .toList())
+        .toList(),
+    questionTranslate: (json['questionTranslate'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    listSubQuestion: (json['listSubQuestion'] as List<dynamic>?)
+        ?.map((e) => QsModel.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

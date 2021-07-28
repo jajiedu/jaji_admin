@@ -8,20 +8,20 @@ part of 'as_quiz1_model.dart';
 
 AsModel _$AsModelFromJson(Map<String, dynamic> json) {
   return AsModel(
-    answerNormal:
-        (json['answerNormal'] as List).map((e) => e as String).toList(),
-    answerFurigana: (json['answerFurigana'] as List<List<RubyTextData>>)
-        .map((e) =>
-            (e as List<RubyTextData>).map((e) => e as RubyTextData).toList())
+    answerNormal: (json['answerNormal'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    isTrue: json['isTrue'] as bool,
+    answerFurigana: (json['answerFurigana'] as List<dynamic>?)
+        ?.map((e) => (e as List<dynamic>)
+            .map((e) => RubyTextData.fromJson(e as Map<String, dynamic>))
+            .toList())
+        .toList(),
+    isTrue: json['isTrue'] as bool?,
   );
 }
 
 Map<String, dynamic> _$AsModelToJson(AsModel instance) => <String, dynamic>{
       'answerNormal': instance.answerNormal,
-      'answerFurigana': instance.answerFurigana
-          ?.map((e) => e.map((e) => e.toJson()).toList())
-          .toList(),
+      'answerFurigana': instance.answerFurigana,
       'isTrue': instance.isTrue,
     };

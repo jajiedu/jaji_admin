@@ -1,6 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:ruby_text/ruby_text/ruby_text.dart';
 part 'as_quiz1_model.g.dart';
 
+@JsonSerializable()
 class AsModel {
   AsModel({this.answerNormal, this.answerFurigana, this.isTrue});
 
