@@ -8,8 +8,8 @@ class SideMenu extends StatelessWidget {
   SideMenu({
     Key? key,
   }) : super(key: key);
-  RouterCtrl routerCtrl = Get.put(RouterCtrl());
-  SideMenuCtrl sideMenuCtrl = Get.put(SideMenuCtrl());
+  final RouterCtrl routerCtrl = Get.put(RouterCtrl());
+  final SideMenuCtrl sideMenuCtrl = Get.put(SideMenuCtrl());
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,13 +27,11 @@ class SideMenu extends StatelessWidget {
             title: "Quiz Manager",
             svgSrc: "assets/icons/menu_tran.svg",
             press: () {
-              // routerCtrl.routerSetting('quiz');
               sideMenuCtrl.updateVisible();
             },
           ),
           Obx(
             () => Visibility(
-              // height: sideMenuCtrl.heightOfMenuQs.value,
               visible: sideMenuCtrl.visibleOfMenuQs.value,
               child: Column(
                 children: [

@@ -45,9 +45,9 @@ dependencies:
   cloud_functions_platform_interface: ^5.0.8
   firebase_core_platform_interface: ^4.0.1
   firebase_auth: ^3.0.1
-  ruby_text:
+  mutation_text:
     git:
-      url: git://github.com/tiennv597/ruby_text.git
+      url: git://github.com/jajiedu/mutation_text.git
 
 dev_dependencies:
   build_runner: ^2.0.6

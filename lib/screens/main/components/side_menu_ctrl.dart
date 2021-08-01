@@ -11,6 +11,7 @@ class SideMenuCtrl extends GetxController {
     super.onInit();
   }
 
+  /// ẩn hoặc hiển thị sub memu
   void updateVisible() {
     visibleOfMenuQs.update((val) {
       visibleOfMenuQs.value = !val!;

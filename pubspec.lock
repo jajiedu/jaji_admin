@@ -464,6 +464,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  mutation_text:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "0bfd82e542389b7913d57f155875db7f491d9b89"
+      url: "git://github.com/jajiedu/mutation_text.git"
+    source: git
+    version: "1.0.0+1"
   package_config:
     dependency: transitive
     description:
@@ -604,15 +613,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  ruby_text:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f0a8f7660181362ffb41962399d8dfc987badfd8
-      url: "git://github.com/tiennv597/ruby_text.git"
-    source: git
-    version: "1.0.0+1"
   shelf:
     dependency: transitive
     description:

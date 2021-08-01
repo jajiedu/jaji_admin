@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
-import 'package:ruby_text/ruby_text/ruby_text.dart';
-
 import 'components/router_form_output.dart';
 
 class OutputPage extends StatelessWidget {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jaji_admin/network/entity/pto.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
+import 'package:mutation_text/mutation_text/mutation_text.dart';
 import 'reading_add_form1_ctrl.dart';
 import 'reading_add_qs_output_router.dart';
 import 'reading_add_qs_widget.dart';
@@ -48,9 +49,10 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
               decoration: TextDecoration.underline,
             ),
           ),
-          Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
-              readingAddForm1Ctrl.quizModel.value.questionNormal,
-              readingAddForm1Ctrl.quizModel.value.questionFurigana)),
+          // Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
+          //     readingAddForm1Ctrl.quizModel.value.questionNormal,
+          //     readingAddForm1Ctrl.quizModel.value.questionFurigana)),
+          //Obx(() => MutationText(readingAddForm1Ctrl.quizModel.value.questionNormal, furiganeText)),
           Row(
             children: [
               Padding(
