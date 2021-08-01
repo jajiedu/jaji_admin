@@ -30,7 +30,7 @@ class ReadingAddForm1Ctrl extends GetxController
   void onInit() {
     // quizModel.value.questionNormal = <String>[];
     // quizModel.value.questionFurigana = <String>[];
-    quizModel.value.questionTranslate = <String>[];
+    // quizModel.value.questionTranslate = <String>[];
     quizModel.value.listSubQuestion = <QsModel>[];
     radioValueQs = <RxInt>[]; //radio
     for (var i = 0; i < 3; i++) {
@@ -73,20 +73,19 @@ class ReadingAddForm1Ctrl extends GetxController
 
   ///update Đề bài(translate)
   void updateQuestionTranslate(String text) {
-    quizModel.value.questionTranslate = <String>[];
+    //quizModel.value.questionTranslate = <String>[];
+    quizModel.update((val) {
+      quizModel.value.questionTranslate = text;
+    });
     List<String> p = text.split('\\n');
-    for (var i = 0; i < p.length; i++) {
-      quizModel.update((val) {
-        quizModel.value.questionTranslate!.add((p[i]));
-      });
-    }
+    for (var i = 0; i < p.length; i++) {}
   }
 
   ///Câu hỏi (normal)
   void updatesubQuestionNormal(String text, int indexQ, int indexA) {
     List<String> p = text.split('\\n');
     quizModel.update((val) {
-      quizModel.value.listSubQuestion![indexQ].subQuestionNormal = p;
+      quizModel.value.listSubQuestion![indexQ].subQuestionNormal = text;
     });
     update();
   }
@@ -94,39 +93,31 @@ class ReadingAddForm1Ctrl extends GetxController
   ///câu hỏi (furigana)
   void updatesubQuestionFurigana(String text, int indexQ, int indexA) {
     List<String> p = text.split('\\n');
-    quizModel.value.listSubQuestion![indexQ].subQuestionFurigana =
-        <List<RubyTextData>>[];
     quizModel.update((val) {
-      for (var i = 0; i < p.length; i++) {
-        quizModel.value.listSubQuestion![indexQ].subQuestionFurigana!
-            .add(convertTextToRuby(p[i]));
-      }
+      quizModel.value.listSubQuestion![indexQ].subQuestionFurigana = text;
     });
     update();
   }
 
-  // ///Đáp án (normal)
-  // void updateAnswerNormal(String text, int indexQ, int indexA) {
-  //   List<String> p = text.split('\\n');
-  //   quizModel.update((val) {
-  //     quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
-  //         .answerNormal = p;
-  //   });
-  // }
+  ///Đáp án (normal)
+  void updateAnswerNormal(String text, int indexQ, int indexA) {
+    List<String> p = text.split('\\n');
+    quizModel.update((val) {
+      quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+          .answerNormal = text;
+    });
+  }
 
-  // ///Đáp án (furigana)
-  // void updateAnswerFurigana(String text, int indexQ, int indexA) {
-  //   List<String> p = text.split('\\n');
-  //   quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
-  //       .answerFurigana = <List<RubyTextData>>[];
-  //   quizModel.update((val) {
-  //     for (var i = 0; i < p.length; i++) {
-  //       quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
-  //           .answerFurigana!
-  //           .add(convertTextToRuby(p[i]));
-  //     }
-  //   });
-  // }
+  ///Đáp án (furigana)
+  void updateAnswerFurigana(String text, int indexQ, int indexA) {
+    List<String> p = text.split('\\n');
+    // quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+    //     .answerFurigana = <List<RubyTextData>>[];
+    quizModel.update((val) {
+      quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+          .answerFurigana = text;
+    });
+  }
 
   // update đáp án đúng
   void updateValueRadio(dynamic v, int index) {
@@ -149,7 +140,7 @@ class ReadingAddForm1Ctrl extends GetxController
   void updateExplain(String text, int index) {
     List<String> p = text.split('\\n');
     quizModel.update((val) {
-      quizModel.value.listSubQuestion![index].explain = p;
+      quizModel.value.listSubQuestion![index].explain = text;
     });
   }
 
@@ -309,13 +300,8 @@ class ReadingAddForm1Ctrl extends GetxController
   }
 
   void saveQsAs() async {
-    // String jsonUser = jsonEncode(quizModel.value);
-    //  QuizServices().addDict(quizModel.value);
-    // try {
-    //   apiService.addQuiz(jsonUser, 'style');
-    //   // String a =apiService.addQuiz(jsonUser, 'style') as String;
-
-    //   // print(apiService.addQuiz(jsonUser, 'style'));
-    // } catch (e) {}
+    //String jsonUser = jsonEncode(quizModel.value);
+    //print(jsonUser);
+    QuizServices().addQuiz(quizModel.value);
   }
 }

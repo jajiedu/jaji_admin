@@ -11,9 +11,7 @@ QuizModelQuiz1 _$QuizModelQuiz1FromJson(Map<String, dynamic> json) {
     id: json['id'] as String?,
     questionNormal: json['questionNormal'] as String?,
     questionFurigana: json['questionFurigana'] as String?,
-    questionTranslate: (json['questionTranslate'] as List<dynamic>?)
-        ?.map((e) => e as String)
-        .toList(),
+    questionTranslate: json['questionTranslate'] as String?,
     listSubQuestion: (json['listSubQuestion'] as List<dynamic>?)
         ?.map((e) => QsModel.fromJson(e as Map<String, dynamic>))
         .toList(),

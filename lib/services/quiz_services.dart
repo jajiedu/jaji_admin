@@ -1,35 +1,41 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:jaji_admin/constant/config.dart';
-// import 'package:jaji_admin/models/quiz1/qs_read1_model.dart';
-// import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
+import 'dart:convert';
 
-// ///
-// ///  create by tiennv on 2021/07/10
-// ///
-// class QuizServices {
-//   /// thêm câu hỏi phần đọc hiểu tổng hợp
-//   void addDict(QuizModelQuiz1 quiz) async {
-//     QsRead1Model qsMutation = QsRead1Model();
-//     qsMutation = mutationFunctions(quiz);
-//     //qsMutation.qsFurigana1 = quiz.questionFurigana![0];
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:jaji_admin/constant/config.dart';
+import 'package:jaji_admin/constant/constants.dart';
+import 'package:jaji_admin/models/quiz1/qs_read1_model.dart';
+import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
 
-//     //truy vấn
-//     final dictsRef = FirebaseFirestore.instance
-//         .collection(AppConfig.collection)
-//         .withConverter<QsRead1Model>(
-//           fromFirestore: (snapshot, _) =>
-//               QsRead1Model.fromJson(snapshot.data()!),
-//           toFirestore: (quizMu, _) => quizMu.toJson(),
-//         );
-//     // print(qsMutation.toJson());
-//     await dictsRef.add(qsMutation);
+///
+///  create by tiennv on 2021/07/10
+///
+class QuizServices {
+  /// thêm câu hỏi phần đọc hiểu tổng hợp
+  void addQuiz(QuizModelQuiz1 quiz) async {
+    //QsRead1Model qsMutation = QsRead1Model();
+    //qsMutation = mutationFunctions(quiz);
+    //qsMutation.qsFurigana1 = quiz.questionFurigana![0];
 
-//     // FirebaseFirestore.instance
-//     //     .collection(AppConfig.collection)
-//     //     .doc('id')
-//     //     .set(quiz.toJson())
-//     //     .then((value) => null);
-//   }
+    //truy vấn
+    final dictsRef = FirebaseFirestore.instance
+        .collection(AppConfig.collection)
+        .withConverter<QuizModelQuiz1>(
+          fromFirestore: (snapshot, _) =>
+              QuizModelQuiz1.fromJson(snapshot.data()!),
+          toFirestore: (quiz, _) => quiz.toJson(),
+        );
+    //print(quiz.toJson());
+    await dictsRef
+        .add(quiz)
+        .then((value) => print('đã lưu'))
+        .catchError((error) => print(error));
+    //String jsonUser = jsonEncode(quizModel.value);
+    // FirebaseFirestore.instance
+    //     .collection(AppConfig.collection)
+    //     .doc('id')
+    //     .set(quiz.toJson())
+    //     .then((value) => null);
+  }
 
 //   /// chuyển về dạng không có mảng lồng nhau
 //   QsRead1Model mutationFunctions(QuizModelQuiz1 quiz) {
@@ -254,4 +260,4 @@
 
 //     return qsMutation;
 //   }
-// }
+}

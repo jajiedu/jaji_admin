@@ -1,4 +1,3 @@
-import 'package:mutation_text/ruby_text/ruby_text.dart';
 import 'qs_quiz1_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'quiz_quiz1_model.g.dart';
@@ -15,16 +14,17 @@ class QuizModelQuiz1 {
 
   String? id = ''; // id của bài tập
   /// Đề bài(normal)
-  String? questionNormal;
+  String? questionNormal = '';
 
   /// Đề bài(furigana) 1
-  String? questionFurigana;
+  String? questionFurigana = '';
 
   /// Đề bài(translate)
-  List<String>? questionTranslate;
+  String? questionTranslate = '';
 
   ///danh sách câu hỏi
-  List<QsModel>? listSubQuestion;
+  @JsonSerializable(explicitToJson: true)
+  List<QsModel>? listSubQuestion = [];
 
   factory QuizModelQuiz1.fromJson(Map<String, dynamic> json) =>
       _$QuizModelQuiz1FromJson(json);

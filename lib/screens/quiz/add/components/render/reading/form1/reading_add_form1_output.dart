@@ -26,23 +26,6 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Đề bài
-          // FutureBuilder<Pto>(
-          //     future: readingAddForm1Ctrl.saveQsAs(),
-          //     builder: (BuildContext context, AsyncSnapshot<Pto> snapshot) {
-          //       List<Widget>? children;
-
-          //       if (snapshot.hasData) {
-          //         children = <Widget>[Text(snapshot.data!.msgs![0])];
-          //       } else {
-          //         children = <Widget>[Container()];
-          //       }
-          //       return Center(
-          //           child: Column(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         children: children,
-          //       ));
-          //     }),
           Text(
             'Đề bài: ',
             style: TextStyle(
@@ -53,8 +36,12 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
           //     readingAddForm1Ctrl.quizModel.value.questionNormal,
           //     readingAddForm1Ctrl.quizModel.value.questionFurigana)),
           Obx(() => MutationText(
-              readingAddForm1Ctrl.quizModel.value.questionNormal,
-              readingAddForm1Ctrl.quizModel.value.questionFurigana)),
+              readingAddForm1Ctrl.quizModel.value.questionNormal == null
+                  ? ''
+                  : readingAddForm1Ctrl.quizModel.value.questionNormal,
+              readingAddForm1Ctrl.quizModel.value.questionFurigana == null
+                  ? ''
+                  : readingAddForm1Ctrl.quizModel.value.questionFurigana)),
           Row(
             children: [
               Padding(
