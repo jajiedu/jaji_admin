@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:jaji_admin/constant/config.dart';
-import 'package:jaji_admin/constant/constants.dart';
-import 'package:jaji_admin/models/quiz1/qs_read1_model.dart';
 import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
 
 ///
@@ -12,10 +8,6 @@ import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
 class QuizServices {
   /// thêm câu hỏi phần đọc hiểu tổng hợp
   void addQuiz(QuizModelQuiz1 quiz) async {
-    //QsRead1Model qsMutation = QsRead1Model();
-    //qsMutation = mutationFunctions(quiz);
-    //qsMutation.qsFurigana1 = quiz.questionFurigana![0];
-
     //truy vấn
     final dictsRef = FirebaseFirestore.instance
         .collection(AppConfig.collection)
@@ -24,17 +16,10 @@ class QuizServices {
               QuizModelQuiz1.fromJson(snapshot.data()!),
           toFirestore: (quiz, _) => quiz.toJson(),
         );
-    //print(quiz.toJson());
     await dictsRef
         .add(quiz)
         .then((value) => print('đã lưu'))
         .catchError((error) => print(error));
-    //String jsonUser = jsonEncode(quizModel.value);
-    // FirebaseFirestore.instance
-    //     .collection(AppConfig.collection)
-    //     .doc('id')
-    //     .set(quiz.toJson())
-    //     .then((value) => null);
   }
 
 //   /// chuyển về dạng không có mảng lồng nhau
