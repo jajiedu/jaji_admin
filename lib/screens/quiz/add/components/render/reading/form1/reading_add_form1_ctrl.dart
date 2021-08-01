@@ -1,15 +1,18 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jaji_admin/models/quiz1/as_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/qs_quiz1_model.dart';
 import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
 import 'package:jaji_admin/network/api_service.dart';
+import 'package:jaji_admin/network/entity/pto.dart';
 import 'package:jaji_admin/services/quiz_services.dart';
 import 'package:ruby_text/ruby_text/ruby_text.dart';
 import '/../utils/string_extension.dart';
+import 'package:http/http.dart' as http;
 
 //Thể loại đọc hiểu ass
 class ReadingAddForm1Ctrl extends GetxController
@@ -307,8 +310,14 @@ class ReadingAddForm1Ctrl extends GetxController
     });
   }
 
-  void saveQsAs() {
-    String jsonUser = jsonEncode(quizModel.value);
-    apiService.addQuiz(jsonUser, 'style');
+  void saveQsAs() async {
+    // String jsonUser = jsonEncode(quizModel.value);
+    QuizServices().addDict(quizModel.value);
+    // try {
+    //   apiService.addQuiz(jsonUser, 'style');
+    //   // String a =apiService.addQuiz(jsonUser, 'style') as String;
+
+    //   // print(apiService.addQuiz(jsonUser, 'style'));
+    // } catch (e) {}
   }
 }

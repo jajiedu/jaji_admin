@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:jaji_admin/screens/main/components/side_menu_ctrl.dart';
 import 'package:jaji_admin/screens/router/router_ctrl.dart';
 
 class SideMenu extends StatelessWidget {
@@ -8,6 +9,7 @@ class SideMenu extends StatelessWidget {
     Key? key,
   }) : super(key: key);
   RouterCtrl routerCtrl = Get.put(RouterCtrl());
+  SideMenuCtrl sideMenuCtrl = Get.put(SideMenuCtrl());
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -25,8 +27,39 @@ class SideMenu extends StatelessWidget {
             title: "Quiz Manager",
             svgSrc: "assets/icons/menu_tran.svg",
             press: () {
-              routerCtrl.routerSetting('quiz');
+              // routerCtrl.routerSetting('quiz');
+              sideMenuCtrl.updateVisible();
             },
+          ),
+          Obx(
+            () => Visibility(
+              // height: sideMenuCtrl.heightOfMenuQs.value,
+              visible: sideMenuCtrl.visibleOfMenuQs.value,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: DrawerListTile(
+                      title: "Thêm",
+                      svgSrc: "assets/icons/menu_tran.svg",
+                      press: () {
+                        routerCtrl.routerSetting('quiz');
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: DrawerListTile(
+                      title: "Sửa, Xóa",
+                      svgSrc: "assets/icons/menu_tran.svg",
+                      press: () {
+                        routerCtrl.routerSetting('quiz');
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           DrawerListTile(
             title: "Task",

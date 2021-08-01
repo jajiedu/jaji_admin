@@ -1,9 +1,8 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
-import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
+import 'dart:io';
+import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 import 'package:jaji_admin/constant/constants.dart' as NETWORK_CONSTANT;
+import 'entity/pto.dart';
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: NETWORK_CONSTANT.basURL)
@@ -12,6 +11,12 @@ abstract class ApiService {
 
   static ApiService create() {
     final dio = Dio();
+    // dio.options.connectTimeout = 5000; //5s
+    // dio.options.receiveTimeout = 5000;
+    // dio.options.headers = {
+    //   HttpHeaders.userAgentHeader: 'dio',
+    //   'common-header': 'xx'
+    // };
     return ApiService(dio);
   }
 
@@ -21,9 +26,15 @@ abstract class ApiService {
 
   //post login user
   @FormUrlEncoded()
-  @POST("/add/quiz")
-  Future<String> addQuiz(
-      @Field("quiz") String quiz, @Field("type") String type);
+  @POST("/add/quiz/api")
+  // @Headers({
+  //   "Access-Control-Allow-Origin": "*",
+  //   'content-Type': 'text/plain; charset=UTF-8',
+  //   "Access-Control-Allow-Credentials": true,
+  //   "Access-Control-Allow-Headers": "Access-Control-Allow-Origin, Accept",
+  //   "Access-Control-Allow-Methods": "POST, OPTIONS"
+  // })
+  Future<Pto> addQuiz(@Field("quiz") String quiz, @Field("type") String type);
 
   // /// thêm câu hỏi
   // @FormUrlEncoded()

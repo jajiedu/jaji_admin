@@ -1,6 +1,7 @@
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jaji_admin/network/entity/pto.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 import 'reading_add_form1_ctrl.dart';
 import 'reading_add_qs_output_router.dart';
@@ -13,7 +14,7 @@ class ReadingAddForm1Output extends StatefulWidget {
 }
 
 class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
-  final AddCtrl questionCtr = Get.find();
+  //final AddCtrl questionCtr = Get.find();
   ReadingAddForm1Ctrl readingAddForm1Ctrl = Get.put(ReadingAddForm1Ctrl());
 
   @override
@@ -24,6 +25,23 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Đề bài
+          // FutureBuilder<Pto>(
+          //     future: readingAddForm1Ctrl.saveQsAs(),
+          //     builder: (BuildContext context, AsyncSnapshot<Pto> snapshot) {
+          //       List<Widget>? children;
+
+          //       if (snapshot.hasData) {
+          //         children = <Widget>[Text(snapshot.data!.msgs![0])];
+          //       } else {
+          //         children = <Widget>[Container()];
+          //       }
+          //       return Center(
+          //           child: Column(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         crossAxisAlignment: CrossAxisAlignment.center,
+          //         children: children,
+          //       ));
+          //     }),
           Text(
             'Đề bài: ',
             style: TextStyle(

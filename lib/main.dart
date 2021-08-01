@@ -12,6 +12,7 @@ Future<void> main() async {
   Future<FirebaseApp> initialization = Firebase.initializeApp();
   FirebaseFirestore firebaseFiretore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
+
   runApp(MyApp());
 }
 

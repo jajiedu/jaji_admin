@@ -17,7 +17,7 @@ class QuizModelQuiz1 {
   /// Đề bài(normal)
   List<String>? questionNormal = <String>[];
 
-  /// Đề bài(furigana)
+  /// Đề bài(furigana) 1
   List<List<RubyTextData>>? questionFurigana;
 
   /// Đề bài(translate)
