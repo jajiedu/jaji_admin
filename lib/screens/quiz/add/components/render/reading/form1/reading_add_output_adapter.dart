@@ -3,12 +3,11 @@ import 'package:get/get.dart';
 import 'package:mutation_text/mutation_text/mutation_text.dart';
 import 'reading_add_form1_ctrl.dart';
 
+/// adapter hiển thị câu hỏi và đáp án
 class ReadingAddQsWidget extends StatelessWidget {
+  final int? indexOfQs;
   ReadingAddQsWidget({Key? key, this.indexOfQs}) : super(key: key);
-
-  int? indexOfQs;
-
-  ReadingAddForm1Ctrl readingAddForm1Ctrl = Get.find();
+  final ReadingAddForm1Ctrl readingAddForm1Ctrl = Get.find();
   Widget makeWidget(context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

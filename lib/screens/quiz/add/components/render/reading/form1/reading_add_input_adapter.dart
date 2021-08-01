@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'reading_add_form1_ctrl.dart';
 
-class ReadingAddQs1 extends StatelessWidget {
-  ReadingAddQs1({Key? key, this.code, this.indexOfPage, this.indexOfTextCtrl})
+// form nhập câu hỏi và đáp án
+class ReadingAddInputAdapter extends StatelessWidget {
+  ReadingAddInputAdapter(
+      {Key? key, this.code, this.indexOfPage, this.indexOfTextCtrl})
       : super(key: key);
   String? code;
   int? indexOfPage;

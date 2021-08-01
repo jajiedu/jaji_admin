@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:jaji_admin/screens/main/components/side_menu_ctrl.dart';
 import 'package:jaji_admin/screens/router/router_ctrl.dart';
 
+///Menu hiển thị các chức năng của app
 class SideMenu extends StatelessWidget {
   SideMenu({
     Key? key,

@@ -1,15 +1,18 @@
 import 'package:get/get.dart';
 
 class AddCtrl extends GetxController {
-  //Mã của form thêm câu hỏi
+  ///Mã của form, mỗi mã tương ứng với 1 form
   RxString formCode = '1'.obs;
-  // Chọn level
+
+  /// cấp độ đã chọn
   RxString selectedLevel = 'N5'.obs;
   List<String> level = ['N5', 'N4', 'N3', 'N2', 'N1'];
-//Chọn thể loại câu hỏi
+
+  /// loại câu hỏi đã chọn
   RxString selectedType = 'Từ vựng'.obs;
   List<String> type = ['Từ vựng', 'Ngữ pháp', 'Đọc', 'Nghe'];
-  //Chọn sub type
+
+  /// thể loại con đã chọn
   RxString selectedSubType = 'Cách đọc kanji'.obs;
   List<String> subType = [
     'Cách đọc kanji',
@@ -19,22 +22,8 @@ class AddCtrl extends GetxController {
     'Biểu hiện từ',
     'Cách dùng từ'
   ];
-  String content = ''; // câu hỏi
-  String answerContent1 = '';
-  String answerContent2 = '';
-  String answerContent3 = '';
-  String answerContent4 = '';
-  List<String> underline = [];
-  var answer;
-  String explain = ''; // giải thích
-  var count = 0.obs;
-  void increment() {
-    count++;
-    print(count);
-    // update();
-  }
 
-// thay đổi cấp độ
+  /// thay đổi cấp độ
   void changeLevel(String newValue) {
     selectedLevel.update((val) {
       selectedLevel.value = newValue;
@@ -42,13 +31,13 @@ class AddCtrl extends GetxController {
     update();
   }
 
-// thay đổi thể loại
+  /// thay đổi thể loại
   void changeType(String newValue) {
     selectedType.update((val) {
       selectedType.value = newValue;
     });
 
-    // Thiết định thể loại con theo thể loại
+    /// Thiết định thể loại con theo thể loại
     switch (selectedType.value) {
       case 'Từ vựng':
         subType = [
@@ -98,25 +87,29 @@ class AddCtrl extends GetxController {
     selectedSubType.update((val) {
       selectedSubType.value = newValue;
     });
-
-    if (selectedSubType == 'Trả lời nhanh') {
-      formCode.update((val) {
-        formCode.value = '2';
-      });
-    } else {
-      formCode.update((val) {
-        formCode.value = '1';
-      });
+    switch (selectedSubType.value) {
+      case 'Trả lời nhanh':
+        formCode.update((val) {
+          formCode.value = '2';
+        });
+        break;
+      case 'Đọc hiểu tổng hợp':
+        formCode.update((val) {
+          formCode.value = '1';
+        });
+        break;
+      default:
     }
+
+    // if (selectedSubType.value == 'Trả lời nhanh') {
+    //   formCode.update((val) {
+    //     formCode.value = '2';
+    //   });
+    // } else {
+    //   formCode.update((val) {
+    //     formCode.value = '1';
+    //   });
+    // }
     update();
-  }
-
-  void addUnderline(String value) {
-    underline.add(value);
-  }
-
-  // Lưu câu hỏi
-  void save() {
-    print(content);
   }
 }

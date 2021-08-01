@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:jaji_admin/screens/quiz/add/components/render/reading/form1/reading_add_qs1.dart';
-
-import 'reading_add_qs_widget.dart';
+import 'reading_add_output_adapter.dart';
 
 class ReadingAddQsOutputRouter extends StatelessWidget {
-  int code;
+  final int code;
   ReadingAddQsOutputRouter(this.code);
   @override
   Widget build(BuildContext context) {

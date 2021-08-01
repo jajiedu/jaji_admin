@@ -17,8 +17,8 @@ class _RouterPageState extends State<RouterPage> {
   Widget build(BuildContext context) {
     switch (widget.name) {
       case 'home':
-        return MyHomePage(
-          title: 'Jaji Admin',
+        return QuizManagerPage(
+          title: 'Quiz Manager',
         );
 
       case 'quiz':
@@ -27,7 +27,7 @@ class _RouterPageState extends State<RouterPage> {
         );
 
       default:
-        return MyHomePage();
+        return QuizManagerPage();
     }
   }
 }

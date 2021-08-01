@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:jaji_admin/constant/constants.dart';
 import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 import 'reading_add_form1_ctrl.dart';
-import 'reading_add_qs_router.dart';
+import 'reading_add_qs_input_router.dart';
 
 // form ứng với thể loại đọc hiểu tổng hợp
 class ReadingAddForm1Input extends StatefulWidget {
@@ -44,7 +44,6 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
             children: [
               TextFormField(
                 onChanged: (text) {
-                  questionCtr.content = text;
                   readingAddForm1Ctrl.updateQuestionFurigana(text);
                 },
                 cursorColor: Colors.deepPurpleAccent,
@@ -62,7 +61,6 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
             children: [
               TextFormField(
                 onChanged: (text) {
-                  questionCtr.content = text;
                   readingAddForm1Ctrl.updateQuestionTranslate(text2);
                 },
                 cursorColor: Colors.deepPurpleAccent,
@@ -101,7 +99,7 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
               )
             ],
           ),
-          Obx(() => ReadingAddQsRouter(readingAddForm1Ctrl.code.value)),
+          Obx(() => ReadingAddQsInputRouter(readingAddForm1Ctrl.code.value)),
         ],
       ),
     );
