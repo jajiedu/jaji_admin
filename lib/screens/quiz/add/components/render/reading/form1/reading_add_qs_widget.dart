@@ -26,53 +26,53 @@ class ReadingAddQsWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 40),
           child: Text('Đáp án 1: '),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 40),
-          child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![0].answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![0].answerFurigana)),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 40),
+        //   child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![0].answerNormal,
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![0].answerFurigana)),
+        // ),
         // Đáp án 2
         Padding(
           padding: const EdgeInsets.only(left: 40),
           child: Text('Đáp án 2: '),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 40),
-          child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![1].answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![1].answerFurigana)),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 40),
+        //   child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![1].answerNormal,
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![1].answerFurigana)),
+        // ),
         // Đáp án 3
         Padding(
           padding: const EdgeInsets.only(left: 40),
           child: Text('Đáp án 3: '),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 40),
-          child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![2].answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![2].answerFurigana)),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 40),
+        //   child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![2].answerNormal,
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![2].answerFurigana)),
+        // ),
         // Đáp án 4
         Padding(
           padding: const EdgeInsets.only(left: 40),
           child: Text('Đáp án 4: '),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 40),
-          child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![3].answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                  .listSubQuestion![3].answerFurigana)),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 40),
+        //   child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![3].answerNormal,
+        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
+        //           .listSubQuestion![3].answerFurigana)),
+        // ),
         // Hiển thị đáp án
         Obx(() => Text(readingAddForm1Ctrl.getAs(readingAddForm1Ctrl
             .quizModel.value.listSubQuestion![indexOfQs!].listSubQuestion!))),

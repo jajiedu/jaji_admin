@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ruby_text/ruby_text/ruby_text.dart';
+import 'package:mutation_text/ruby_text/src/ruby_text_data.dart';
 import 'as_quiz1_model.dart';
 part 'qs_quiz1_model.g.dart';
 

@@ -1,4 +1,4 @@
-import 'package:ruby_text/ruby_text/ruby_text.dart';
+import 'package:mutation_text/ruby_text/ruby_text.dart';
 import 'qs_quiz1_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'quiz_quiz1_model.g.dart';
@@ -15,10 +15,10 @@ class QuizModelQuiz1 {
 
   String? id = ''; // id của bài tập
   /// Đề bài(normal)
-  List<String>? questionNormal = <String>[];
+  String? questionNormal;
 
   /// Đề bài(furigana) 1
-  List<List<RubyTextData>>? questionFurigana;
+  String? questionFurigana;
 
   /// Đề bài(translate)
   List<String>? questionTranslate;

@@ -10,7 +10,7 @@ import 'package:jaji_admin/models/quiz1/quiz_quiz1_model.dart';
 import 'package:jaji_admin/network/api_service.dart';
 import 'package:jaji_admin/network/entity/pto.dart';
 import 'package:jaji_admin/services/quiz_services.dart';
-import 'package:ruby_text/ruby_text/ruby_text.dart';
+import 'package:mutation_text/ruby_text/ruby_text.dart';
 import '/../utils/string_extension.dart';
 import 'package:http/http.dart' as http;
 
@@ -28,8 +28,8 @@ class ReadingAddForm1Ctrl extends GetxController
       ApiService(Dio(BaseOptions(contentType: 'application/json')));
   @override
   void onInit() {
-    quizModel.value.questionNormal = <String>[];
-    quizModel.value.questionFurigana = <List<RubyTextData>>[];
+    // quizModel.value.questionNormal = <String>[];
+    // quizModel.value.questionFurigana = <String>[];
     quizModel.value.questionTranslate = <String>[];
     quizModel.value.listSubQuestion = <QsModel>[];
     radioValueQs = <RxInt>[]; //radio
@@ -39,8 +39,8 @@ class ReadingAddForm1Ctrl extends GetxController
       radioValueQs!.add(0.obs); //radio
       for (var j = 0; j < 4; j++) {
         quizModel.value.listSubQuestion![i].listSubQuestion!.add(AsModel());
-        quizModel.value.listSubQuestion![i].listSubQuestion![j].answerFurigana =
-            <List<RubyTextData>>[];
+        // quizModel.value.listSubQuestion![i].listSubQuestion![j].answerFurigana =
+        //     <List<RubyTextData>>[];
       }
     }
     //khởi tạo text controller lưu giá trị của input
@@ -53,24 +53,22 @@ class ReadingAddForm1Ctrl extends GetxController
 
   ///update Đề bài(normal)
   void updateQuestionNormal(String text) {
-    quizModel.value.questionNormal = <String>[];
+    // quizModel.value.questionNormal = <String>[];
+    quizModel.update((val) {
+      quizModel.value.questionNormal = text;
+    });
     List<String> p = text.split('\\n');
-    for (var i = 0; i < p.length; i++) {
-      quizModel.update((val) {
-        quizModel.value.questionNormal!.add(p[i]);
-      });
-    }
+    for (var i = 0; i < p.length; i++) {}
   }
 
   ///update Đề bài(furigana)
   void updateQuestionFurigana(String text) {
-    quizModel.value.questionFurigana = <List<RubyTextData>>[];
+    // quizModel.value.questionFurigana = <String>[];
+    quizModel.update((val) {
+      quizModel.value.questionFurigana = text;
+    });
     List<String> p = text.split('\\n');
-    for (var i = 0; i < p.length; i++) {
-      quizModel.update((val) {
-        quizModel.value.questionFurigana!.add(convertTextToRuby(p[i]));
-      });
-    }
+    for (var i = 0; i < p.length; i++) {}
   }
 
   ///update Đề bài(translate)
@@ -107,28 +105,28 @@ class ReadingAddForm1Ctrl extends GetxController
     update();
   }
 
-  ///Đáp án (normal)
-  void updateAnswerNormal(String text, int indexQ, int indexA) {
-    List<String> p = text.split('\\n');
-    quizModel.update((val) {
-      quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
-          .answerNormal = p;
-    });
-  }
+  // ///Đáp án (normal)
+  // void updateAnswerNormal(String text, int indexQ, int indexA) {
+  //   List<String> p = text.split('\\n');
+  //   quizModel.update((val) {
+  //     quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+  //         .answerNormal = p;
+  //   });
+  // }
 
-  ///Đáp án (furigana)
-  void updateAnswerFurigana(String text, int indexQ, int indexA) {
-    List<String> p = text.split('\\n');
-    quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
-        .answerFurigana = <List<RubyTextData>>[];
-    quizModel.update((val) {
-      for (var i = 0; i < p.length; i++) {
-        quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
-            .answerFurigana!
-            .add(convertTextToRuby(p[i]));
-      }
-    });
-  }
+  // ///Đáp án (furigana)
+  // void updateAnswerFurigana(String text, int indexQ, int indexA) {
+  //   List<String> p = text.split('\\n');
+  //   quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+  //       .answerFurigana = <List<RubyTextData>>[];
+  //   quizModel.update((val) {
+  //     for (var i = 0; i < p.length; i++) {
+  //       quizModel.value.listSubQuestion![indexQ].listSubQuestion![indexA]
+  //           .answerFurigana!
+  //           .add(convertTextToRuby(p[i]));
+  //     }
+  //   });
+  // }
 
   // update đáp án đúng
   void updateValueRadio(dynamic v, int index) {
@@ -312,7 +310,7 @@ class ReadingAddForm1Ctrl extends GetxController
 
   void saveQsAs() async {
     // String jsonUser = jsonEncode(quizModel.value);
-    QuizServices().addDict(quizModel.value);
+    //  QuizServices().addDict(quizModel.value);
     // try {
     //   apiService.addQuiz(jsonUser, 'style');
     //   // String a =apiService.addQuiz(jsonUser, 'style') as String;

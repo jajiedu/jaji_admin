@@ -42,7 +42,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 1(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 0);
+            // readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 0);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![2]],
           cursorColor: Colors.deepPurpleAccent,
@@ -54,7 +54,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 1(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 0);
+            // readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 0);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![3]],
           cursorColor: Colors.deepPurpleAccent,
@@ -66,7 +66,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 2(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 1);
+            // readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 1);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![4]],
           cursorColor: Colors.deepPurpleAccent,
@@ -78,7 +78,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 2(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 1);
+            //readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 1);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![5]],
           cursorColor: Colors.deepPurpleAccent,
@@ -90,7 +90,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 3(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 2);
+            //readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 2);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![6]],
           cursorColor: Colors.deepPurpleAccent,
@@ -102,7 +102,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 3(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 2);
+            //readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 2);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![7]],
           cursorColor: Colors.deepPurpleAccent,
@@ -114,7 +114,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 4(normal)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 3);
+            // readingAddForm1Ctrl.updateAnswerNormal(text, indexOfPage!, 3);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![8]],
           cursorColor: Colors.deepPurpleAccent,
@@ -126,7 +126,7 @@ class ReadingAddQs1 extends StatelessWidget {
         //Đáp án 4(furigana)
         TextFormField(
           onChanged: (text) {
-            readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 3);
+            // readingAddForm1Ctrl.updateAnswerFurigana(text, indexOfPage!, 3);
           },
           controller: readingAddForm1Ctrl.textCtrls[indexOfTextCtrl![9]],
           cursorColor: Colors.deepPurpleAccent,

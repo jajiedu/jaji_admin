@@ -52,7 +52,9 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
           // Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
           //     readingAddForm1Ctrl.quizModel.value.questionNormal,
           //     readingAddForm1Ctrl.quizModel.value.questionFurigana)),
-          //Obx(() => MutationText(readingAddForm1Ctrl.quizModel.value.questionNormal, furiganeText)),
+          Obx(() => MutationText(
+              readingAddForm1Ctrl.quizModel.value.questionNormal,
+              readingAddForm1Ctrl.quizModel.value.questionFurigana)),
           Row(
             children: [
               Padding(

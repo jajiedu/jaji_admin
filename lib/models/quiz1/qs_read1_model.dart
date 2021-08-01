@@ -1,4 +1,4 @@
-import 'package:ruby_text/ruby_text/ruby_text.dart';
+import 'package:mutation_text/ruby_text/ruby_text.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'qs_read1_model.g.dart';
