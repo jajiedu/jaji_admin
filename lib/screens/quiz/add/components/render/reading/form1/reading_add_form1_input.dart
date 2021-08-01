@@ -61,7 +61,7 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
             children: [
               TextFormField(
                 onChanged: (text) {
-                  readingAddForm1Ctrl.updateQuestionTranslate(text2);
+                  readingAddForm1Ctrl.updateQuestionTranslate(text);
                 },
                 cursorColor: Colors.deepPurpleAccent,
                 minLines: 3,
@@ -77,7 +77,7 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                     onPressed: () {
-                      readingAddForm1Ctrl.updateCode('1');
+                      readingAddForm1Ctrl.updateCodeQsAs(0);
                     },
                     child: Text('Câu hỏi 1')),
               ),
@@ -85,7 +85,7 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                     onPressed: () {
-                      readingAddForm1Ctrl.updateCode('2');
+                      readingAddForm1Ctrl.updateCodeQsAs(1);
                     },
                     child: Text('Câu hỏi 2')),
               ),
@@ -93,13 +93,14 @@ class _ReadingAddForm1InputState extends State<ReadingAddForm1Input> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                     onPressed: () {
-                      readingAddForm1Ctrl.updateCode('3');
+                      readingAddForm1Ctrl.updateCodeQsAs(2);
                     },
                     child: Text('Câu hỏi 3')),
               )
             ],
           ),
-          Obx(() => ReadingAddQsInputRouter(readingAddForm1Ctrl.code.value)),
+          Obx(() =>
+              ReadingAddQsInputRouter(readingAddForm1Ctrl.codeQsAs.value)),
         ],
       ),
     );

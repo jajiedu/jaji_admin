@@ -469,7 +469,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "0bfd82e542389b7913d57f155875db7f491d9b89"
+      resolved-ref: f9e93cc7c3d540af21c50f3f5bd2e94a9f9c3314
       url: "git://github.com/jajiedu/mutation_text.git"
     source: git
     version: "1.0.0+1"

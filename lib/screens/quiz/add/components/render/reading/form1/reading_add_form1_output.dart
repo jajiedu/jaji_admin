@@ -1,12 +1,8 @@
-import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jaji_admin/network/entity/pto.dart';
-import 'package:jaji_admin/screens/quiz/add/add_ctrl.dart';
 import 'package:mutation_text/mutation_text/mutation_text.dart';
 import 'reading_add_form1_ctrl.dart';
 import 'reading_add_qs_output_router.dart';
-import 'reading_add_output_adapter.dart';
 
 // form ứng với thể loại đọc hiểu tổng hợp
 class ReadingAddForm1Output extends StatefulWidget {
@@ -36,9 +32,10 @@ class _ReadingAddForm1OutputState extends State<ReadingAddForm1Output> {
               readingAddForm1Ctrl.quizModel.value.questionNormal == null
                   ? ''
                   : readingAddForm1Ctrl.quizModel.value.questionNormal,
-              readingAddForm1Ctrl.quizModel.value.questionFurigana == null
-                  ? ''
-                  : readingAddForm1Ctrl.quizModel.value.questionFurigana)),
+              furiganaText:
+                  readingAddForm1Ctrl.quizModel.value.questionFurigana == null
+                      ? ''
+                      : readingAddForm1Ctrl.quizModel.value.questionFurigana)),
           Row(
             children: [
               Padding(

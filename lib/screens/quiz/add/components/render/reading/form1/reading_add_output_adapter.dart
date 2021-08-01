@@ -16,11 +16,6 @@ class ReadingAddQsWidget extends StatelessWidget {
       children: [
         // câu hỏi 1
         Text('Câu hỏi ${indexOfQs! + 1}: '),
-        // Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
-        //     readingAddForm1Ctrl
-        //         .quizModel.value.listSubQuestion![indexOfQs!].subQuestionNormal,
-        //     readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-        //         .subQuestionFurigana)),
         Obx(() => MutationText(
             readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
                         .subQuestionNormal ==
@@ -28,8 +23,8 @@ class ReadingAddQsWidget extends StatelessWidget {
                 ? ''
                 : readingAddForm1Ctrl.quizModel.value
                     .listSubQuestion![indexOfQs!].subQuestionNormal,
-            readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                        .subQuestionFurigana ==
+            furiganaText: readingAddForm1Ctrl.quizModel.value
+                        .listSubQuestion![indexOfQs!].subQuestionFurigana ==
                     null
                 ? ''
                 : readingAddForm1Ctrl.quizModel.value
@@ -39,14 +34,6 @@ class ReadingAddQsWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 40),
           child: Text('Đáp án 1: '),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 40),
-        //   child: Obx(() => readingAddForm1Ctrl.getTextRubyWidgets(
-        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-        //           .listSubQuestion![0].answerNormal,
-        //       readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-        //           .listSubQuestion![0].answerFurigana)),
-        // ),
         Padding(
           padding: const EdgeInsets.only(left: 40),
           child: Obx(() => MutationText(
@@ -60,8 +47,12 @@ class ReadingAddQsWidget extends StatelessWidget {
                       .listSubQuestion![indexOfQs!]
                       .listSubQuestion![0]
                       .answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                          .listSubQuestion![0].answerFurigana ==
+              furiganaText: readingAddForm1Ctrl
+                          .quizModel
+                          .value
+                          .listSubQuestion![indexOfQs!]
+                          .listSubQuestion![0]
+                          .answerFurigana ==
                       null
                   ? ''
                   : readingAddForm1Ctrl
@@ -89,8 +80,12 @@ class ReadingAddQsWidget extends StatelessWidget {
                       .listSubQuestion![indexOfQs!]
                       .listSubQuestion![1]
                       .answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                          .listSubQuestion![1].answerFurigana ==
+              furiganaText: readingAddForm1Ctrl
+                          .quizModel
+                          .value
+                          .listSubQuestion![indexOfQs!]
+                          .listSubQuestion![1]
+                          .answerFurigana ==
                       null
                   ? ''
                   : readingAddForm1Ctrl
@@ -118,8 +113,12 @@ class ReadingAddQsWidget extends StatelessWidget {
                       .listSubQuestion![indexOfQs!]
                       .listSubQuestion![2]
                       .answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                          .listSubQuestion![2].answerFurigana ==
+              furiganaText: readingAddForm1Ctrl
+                          .quizModel
+                          .value
+                          .listSubQuestion![indexOfQs!]
+                          .listSubQuestion![2]
+                          .answerFurigana ==
                       null
                   ? ''
                   : readingAddForm1Ctrl
@@ -147,8 +146,12 @@ class ReadingAddQsWidget extends StatelessWidget {
                       .listSubQuestion![indexOfQs!]
                       .listSubQuestion![3]
                       .answerNormal,
-              readingAddForm1Ctrl.quizModel.value.listSubQuestion![indexOfQs!]
-                          .listSubQuestion![3].answerFurigana ==
+              furiganaText: readingAddForm1Ctrl
+                          .quizModel
+                          .value
+                          .listSubQuestion![indexOfQs!]
+                          .listSubQuestion![3]
+                          .answerFurigana ==
                       null
                   ? ''
                   : readingAddForm1Ctrl
@@ -166,11 +169,14 @@ class ReadingAddQsWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 40),
           child: Text('Giải thích: '),
         ),
-        // Padding(
-        //     padding: const EdgeInsets.only(left: 40),
-        //     child: Obx(() => readingAddForm1Ctrl.getTextStringWidgets(
-        //         readingAddForm1Ctrl
-        //             .quizModel.value.listSubQuestion![indexOfQs!].explain))),
+        Padding(
+            padding: const EdgeInsets.only(left: 40),
+            child: Obx(() => MutationText(readingAddForm1Ctrl
+                        .quizModel.value.listSubQuestion![indexOfQs!].explain ==
+                    null
+                ? ''
+                : readingAddForm1Ctrl
+                    .quizModel.value.listSubQuestion![indexOfQs!].explain))),
       ],
     );
   }
